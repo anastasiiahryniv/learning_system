@@ -23,3 +23,13 @@ rubocop -A
 bundle exec rubocop -a --only Style/FrozenStringLiteralComment
 bundle exec rubocop -A --only Layout/EmptyLineAfterMagicComment
 ```
+
+## ERBLint
+### find issues
+```bash
+bundle exec erblint --lint-all
+```
+### find issues and autocorrect
+bundle exec erblint --lint-all --autocorrect
+bundle exec erblint -la -a
+```
