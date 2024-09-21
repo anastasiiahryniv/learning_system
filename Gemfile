@@ -23,7 +23,6 @@ gem 'jbuilder', '~> 2.7'
 # gem 'bcrypt', '~> 3.1.7'
 
 gem 'ostruct'
-gem 'ostruct'
 gem 'logger'
 gem 'base64'
 gem 'bigdecimal'
