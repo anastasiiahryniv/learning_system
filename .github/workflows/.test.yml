@@ -54,6 +54,7 @@ jobs:
           # RAILS_MASTER_KEY: ${{ secrets.RAILS_MASTER_KEY }}
         run: |
           bin/rails tailwindcss:build
+          bin/webpack 
           bin/rails db:create
           bin/rails db:schema:load
           bin/rails test --fail-fast
