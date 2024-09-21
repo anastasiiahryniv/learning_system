@@ -17,3 +17,5 @@ jobs:
         run: bundle exec rubocop --parallel
       - name: erb-lint
         run: bundle exec erblint --lint-all
+      - name: Security audit application code
+        run: bundle exec brakeman -q -w2
