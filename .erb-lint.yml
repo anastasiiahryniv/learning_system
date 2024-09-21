@@ -13,7 +13,7 @@ linters:
       - "node_modules/**/*"
     rubocop_config:
       inherit_from:
-        - .lint.yml
+        - .rubocop.yml
       Layout/InitialIndentation:
         Enabled: false
       Layout/TrailingEmptyLines:
