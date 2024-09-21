@@ -55,6 +55,7 @@ jobs:
         run: |
           bin/rails tailwindcss:build
           bin/webpack 
+          npx update-browserslist-db@latest
           bin/rails db:create
           bin/rails db:schema:load
           bin/rails test --fail-fast
