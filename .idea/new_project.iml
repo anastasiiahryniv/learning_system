@@ -40,6 +40,8 @@
     <orderEntry type="library" scope="PROVIDED" name="activestorage (v6.1.7.8, RVM: ruby-3.3.5) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="activesupport (v6.1.7.8, RVM: ruby-3.3.5) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="addressable (v2.8.7, RVM: ruby-3.3.5) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="base64 (v0.2.0, RVM: ruby-3.3.5) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="bigdecimal (v3.1.5, RVM: ruby-3.3.5) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="bindex (v0.8.1, RVM: ruby-3.3.5) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="bootsnap (v1.18.4, RVM: ruby-3.3.5) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="builder (v3.3.0, RVM: ruby-3.3.5) [gem]" level="application" />
@@ -49,12 +51,14 @@
     <orderEntry type="library" scope="PROVIDED" name="concurrent-ruby (v1.3.4, RVM: ruby-3.3.5) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="crass (v1.0.6, RVM: ruby-3.3.5) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="date (v3.3.4, RVM: ruby-3.3.5) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="drb (v2.2.0, RVM: ruby-3.3.5) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="erubi (v1.13.0, RVM: ruby-3.3.5) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="ffi (v1.17.0, RVM: ruby-3.3.5) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="globalid (v1.2.1, RVM: ruby-3.3.5) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="i18n (v1.14.6, RVM: ruby-3.3.5) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="jbuilder (v2.13.0, RVM: ruby-3.3.5) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="listen (v3.9.0, RVM: ruby-3.3.5) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="logger (v1.6.0, RVM: ruby-3.3.5) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="loofah (v2.22.0, RVM: ruby-3.3.5) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="mail (v2.8.1, RVM: ruby-3.3.5) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="marcel (v1.0.4, RVM: ruby-3.3.5) [gem]" level="application" />
@@ -63,12 +67,14 @@
     <orderEntry type="library" scope="PROVIDED" name="mini_mime (v1.1.5, RVM: ruby-3.3.5) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="minitest (v5.25.1, RVM: ruby-3.3.5) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="msgpack (v1.7.2, RVM: ruby-3.3.5) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="mutex_m (v0.2.0, RVM: ruby-3.3.5) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="net-imap (v0.4.16, RVM: ruby-3.3.5) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="net-pop (v0.1.2, RVM: ruby-3.3.5) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="net-protocol (v0.2.2, RVM: ruby-3.3.5) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="net-smtp (v0.5.0, RVM: ruby-3.3.5) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="nio4r (v2.7.3, RVM: ruby-3.3.5) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="nokogiri (v1.16.7, RVM: ruby-3.3.5) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="ostruct (v0.6.0, RVM: ruby-3.3.5) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="pg (v1.5.8, RVM: ruby-3.3.5) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="public_suffix (v6.0.1, RVM: ruby-3.3.5) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="puma (v5.6.9, RVM: ruby-3.3.5) [gem]" level="application" />
@@ -86,6 +92,7 @@
     <orderEntry type="library" scope="PROVIDED" name="rb-inotify (v0.11.1, RVM: ruby-3.3.5) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="regexp_parser (v2.9.2, RVM: ruby-3.3.5) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="rexml (v3.3.7, RVM: ruby-3.3.5) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="ruby2_keywords (v0.0.5, RVM: ruby-3.3.5) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="rubyzip (v2.3.2, RVM: ruby-3.3.5) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="sass-rails (v6.0.0, RVM: ruby-3.3.5) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="sassc (v2.4.0, RVM: ruby-3.3.5) [gem]" level="application" />
