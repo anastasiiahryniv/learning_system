@@ -30,6 +30,7 @@ bundle exec rubocop -A --only Layout/EmptyLineAfterMagicComment
 bundle exec erblint --lint-all
 ```
 ### find issues and autocorrect
+```bash
 bundle exec erblint --lint-all --autocorrect
 bundle exec erblint -la -a
 ```
