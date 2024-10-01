@@ -59,7 +59,7 @@ group :test do
   gem 'selenium-webdriver', '>= 4.0.0.rc1'
   # Easy installation and use of web drivers to run system tests with browsers
   gem 'webdrivers'
-
+  gem 'simplecov', '~> 0.21.2'
   gem 'minitest', '~> 5.24', '>= 5.24.1'
 end
 
