@@ -13,7 +13,7 @@ class Enrollment < ApplicationRecord
   validates :grade, presence: true,
                     numericality: { only_integer: true,
                                     greater_than_or_equal_to: MIN_GRADE,
-                                    less_than_or_equal_to: MAX_GRADE}
+                                    less_than_or_equal_to: MAX_GRADE }
 
   # Enrollments
   enum status: { draft: 10, active: 20, inactive: 30 }
