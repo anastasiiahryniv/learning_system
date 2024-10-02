@@ -12,5 +12,5 @@ class Student < ApplicationRecord
   validates :email, uniqueness: true, presence: true
 
   # Enrollments
-  enum status: {}
+  enum status: { pending: 10, active: 20, inactive: 30 }
 end

@@ -11,7 +11,6 @@ class CreateEnrollments < ActiveRecord::Migration[6.1]
 
     add_foreign_key :enrollments, :students
     add_foreign_key :enrollments, :courses
-    add_index :enrollments, [:student_id], unique: true
-    add_index :enrollments, [:course_id], unique: true
+    add_index :enrollments, [:student_id, :course_id], unique: true
   end
 end

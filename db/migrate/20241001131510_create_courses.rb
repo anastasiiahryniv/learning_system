@@ -8,5 +8,5 @@ class CreateCourses < ActiveRecord::Migration[6.1]
   end
 
   add_foreign_key :courses, :instructors
-  add_index :courses, [:instructor_id], unique: true
+  add_index :courses, :instructor_id
 end

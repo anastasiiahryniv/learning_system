@@ -1,6 +1,5 @@
 class Enrollment < ApplicationRecord
   # Constants
-  MAX_NAME_LENGTH = 50
   MAX_GRADE = 10
   MIN_GRADE = 1
 
@@ -9,7 +8,6 @@ class Enrollment < ApplicationRecord
   belongs_to :course
 
   # Validations
-  validates :name, presence: true, length: { maximum: MAX_NAME_LENGTH }
   validates :grade, presence: true,
                     numericality: { only_integer: true,
                                     greater_than_or_equal_to: MIN_GRADE,

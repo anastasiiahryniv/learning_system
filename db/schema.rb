@@ -22,7 +22,7 @@ ActiveRecord::Schema.define(version: 2024_10_01_131643) do
     t.integer "status", default: 30
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["instructor_id"], name: "index_courses_on_instructor_id", unique: true
+    t.index ["instructor_id"], name: "index_courses_on_instructor_id"
   end
 
   create_table "enrollments", force: :cascade do |t|
@@ -32,8 +32,7 @@ ActiveRecord::Schema.define(version: 2024_10_01_131643) do
     t.integer "grade"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["course_id"], name: "index_enrollments_on_course_id", unique: true
-    t.index ["student_id"], name: "index_enrollments_on_student_id", unique: true
+    t.index ["student_id", "course_id"], name: "index_enrollments_on_student_id_and_course_id", unique: true
   end
 
   create_table "instructors", force: :cascade do |t|
