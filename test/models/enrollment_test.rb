@@ -2,10 +2,9 @@ require 'test_helper'
 
 class EnrollmentTest < ActiveSupport::TestCase
   def setup
-    @student = Student.create!(name: 'Student', surname: 'Test Surname', email: 'test@example.com', status: 10)
-    @instructor = Instructor.create!(name: 'John', surname: 'Doe', email: 'instructor@test.com', status: 10)
-    @course = Course.create!(name: 'Test Course', instructor: @instructor)
-    @enrollment = Enrollment.new(student: @student, course: @course, grade: 5, status: 10)
+    @student = FactoryBot.create(:student)
+    @course = FactoryBot.create(:course, instructor: FactoryBot.create(:instructor))
+    @enrollment = FactoryBot.create(:enrollment, student: @student, course: @course)
   end
 
   test 'enrollment should belong to student' do

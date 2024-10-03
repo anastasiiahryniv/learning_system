@@ -2,12 +2,12 @@ require 'test_helper'
 
 class CourseTest < ActiveSupport::TestCase
   def setup
-    @instructor = Instructor.create!(name: 'Test', surname: 'Test Surname', email: 'test@example.com', status: 10)
-    @student1 = Student.create!(name: 'Student 1', surname: 'Test Surname', email: 'test1@example.com', status: 10)
-    @student2 = Student.create!(name: 'Student 2', surname: 'Test Surname', email: 'test2@example.com', status: 10)
-    @course = Course.create!(name: 'Test Course', instructor: @instructor)
-    @enrollment1 = Enrollment.create!(student: @student1, course: @course, grade: 5, status: :active)
-    @enrollment2 = Enrollment.create!(student: @student2, course: @course, grade: 6, status: :active)
+    @student1 = FactoryBot.create(:student)
+    @student2 = FactoryBot.create(:student)
+    @instructor = FactoryBot.create(:instructor)
+    @course = FactoryBot.create(:course, instructor: @instructor)
+    @enrollment1 =  FactoryBot.create(:enrollment, student: @student1, course: @course)
+    @enrollment2 =  FactoryBot.create(:enrollment, student: @student2, course: @course)
   end
 
   test 'course should belong to instructor' do

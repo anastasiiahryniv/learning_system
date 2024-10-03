@@ -1,17 +1,14 @@
 require 'test_helper'
 
 class StudentTest < ActiveSupport::TestCase
-  def setup
-    @student_params = { name: 'John', surname: 'Doe', email: 'student@test.com' }
-  end
-
   test 'user should be valid' do
-    student = Student.new(@student_params)
-    assert student.valid?
+    @student = FactoryBot.create(:student)
+    assert @student.valid?
   end
 
   test 'name should be present' do
-    student = Student.new(@student_params.except(:name))
-    assert_not student.valid?
+    @student = FactoryBot.build(:student, name: '')
+    assert_not @student.valid?
+    assert_includes @student.errors[:name], "can't be blank"
   end
 end
