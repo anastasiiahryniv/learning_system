@@ -7,6 +7,16 @@ on:
     branches:
       - main
 jobs:
+  install-cache:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: Checkout Commit
+        uses: actions/checkout@v3
+      - name: Install Ruby
+        uses: ruby/setup-ruby@v1
+        with:
+          bundler-cache: true
   test:
     runs-on: ubuntu-latest
     needs: install-cache
@@ -40,10 +50,15 @@ jobs:
           sudo apt-get install -y nodejs yarn
       - name: Install Node modules
         run: yarn install
+      - name: Install Gems
+        run: |
+          gem install bundler
+          bundle install
       - name: Precompile Webpack assets
         env:
           RAILS_ENV: test
-        run: bin/webpacker:compile
+        run: |
+          bin/rails webpacker:install
       - name: Run tests
         env:
           RAILS_ENV: test
@@ -60,3 +75,4 @@ jobs:
           DATABASE_URL: postgres://postgres:password@localhost:5432/myapp_test
           # RAILS_MASTER_KEY: ${{ secrets.RAILS_MASTER_KEY }}
         run: bundle exec rails db:reset
+
