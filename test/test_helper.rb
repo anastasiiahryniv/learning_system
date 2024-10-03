@@ -1,3 +1,7 @@
+require 'simplecov'
+SimpleCov.start
+SimpleCov.command_name 'Unit Tests'
+
 ENV['RAILS_ENV'] ||= 'test'
 require_relative '../config/environment'
 require 'rails/test_help'
