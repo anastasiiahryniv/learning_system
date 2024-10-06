@@ -1,6 +1,6 @@
 class Course < ApplicationRecord
   # Constants
-  MAX_NAME_LENGTH = 100
+  MAX_COURSE_NAME_LENGTH = 100
   MAX_DESCRIPTION_LENGTH = 500
 
   # Associations
@@ -9,7 +9,7 @@ class Course < ApplicationRecord
   has_many :students, through: :enrollments
 
   # Validations
-  validates :name, presence: true, length: { maximum: MAX_NAME_LENGTH }
+  validates :name, presence: true, length: { maximum: MAX_COURSE_NAME_LENGTH }
   validates :description, length: { maximum: MAX_DESCRIPTION_LENGTH }
 
   # Enrollments

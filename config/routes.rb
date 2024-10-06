@@ -1,5 +1,10 @@
 Rails.application.routes.draw do
+  devise_for :instructors
+  devise_for :students
+
   resources :courses
-  resources :users
-  root 'static_pages#landing_page'
+  get 'home/students'
+  get 'home/instructors'
+
+  root 'home#index'
 end
