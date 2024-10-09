@@ -34,3 +34,9 @@ bundle exec erblint --lint-all
 bundle exec erblint --lint-all --autocorrect
 bundle exec erblint -la -a
 ```
+
+## Seeds
+### to populate db with data run: 
+```bash
+rails db:seed
+```
