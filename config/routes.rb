@@ -1,5 +1,17 @@
+require 'sidekiq/web'
+
 Rails.application.routes.draw do
+  devise_for :instructors
+  devise_for :students
+
+  authenticate :instructors do
+    mount Sidekiq::Web => '/sidekiq'
+  end
+
   resources :courses
-  resources :users
-  root 'static_pages#landing_page'
+  get 'home/students'
+  get 'home/instructors'
+
+  delete 'sign_out', to: 'application#sign_out', as: 'destroy_session'
+  root 'home#index'
 end

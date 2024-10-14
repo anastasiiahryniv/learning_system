@@ -1,8 +1,8 @@
 require 'test_helper'
 
 class StaticPagesControllerTest < ActionDispatch::IntegrationTest
-  test 'should get landing_page' do
-    get root_url
+  test 'should get sign_in page if user is not signed in' do
+    get new_student_session_path
     assert_response :success
   end
 end
