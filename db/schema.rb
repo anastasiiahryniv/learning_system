@@ -36,7 +36,7 @@ ActiveRecord::Schema.define(version: 2024_10_07_131643) do
   end
 
   create_table "instructors", force: :cascade do |t|
-    t.string "status", null: false
+    t.string "status"
     t.string "name", null: false
     t.string "surname", null: false
     t.string "email", null: false

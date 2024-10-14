@@ -7,7 +7,7 @@ class HomeController < ApplicationController
     elsif current_instructor
       redirect_to home_instructors_path
     else
-      redirect_to root_path
+      redirect_to new_student_session_path
     end
   end
 

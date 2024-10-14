@@ -14,4 +14,12 @@ class Course < ApplicationRecord
 
   # Enrollments
   enum status: { draft: 10, active: 20, inactive: 30 }
+
+  after_create :set_status
+
+  private
+
+  def set_status
+    update(status: :inactive)
+  end
 end

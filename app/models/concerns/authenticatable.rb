@@ -16,5 +16,11 @@ module Authenticatable
 
     # Enrollments
     enum status: { pending: 10, active: 20, inactive: 30 }
+
+    after_create :set_status
+  end
+
+  def set_status
+    update(status: :active)
   end
 end
