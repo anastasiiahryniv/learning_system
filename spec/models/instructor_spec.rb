@@ -1,15 +1,42 @@
 require 'rails_helper'
 
 RSpec.describe Instructor, type: :model do
-  pending "add some examples to (or delete) #{__FILE__}"
-#    test 'user should be valid' do
-#     @instructor = FactoryBot.create(:instructor)
-#     assert @instructor.valid?
-#   end
-#
-#   test 'name should be present' do
-#     @instructor = FactoryBot.build(:instructor, name: '')
-#     assert_not @instructor.valid?
-#     assert_includes @instructor.errors[:name], "can't be blank"
-#   end
+  let(:instructor) { create :instructor }
+
+  describe 'instructor' do
+    it 'is valid' do
+      expect(instructor).to be_valid
+    end
+
+    it 'is invalid without name || surname || email ' do
+      instructor.name = nil
+      instructor.surname = nil
+      instructor.email = nil
+      expect(instructor).not_to be_valid
+      expect(instructor.errors[:name]).to include("can't be blank")
+      expect(instructor.errors[:surname]).to include("can't be blank")
+      expect(instructor.errors[:email]).to include("can't be blank")
+    end
+
+    it 'is invalid if surname is longer than 50 characters' do
+      instructor.name = 'a' * 51
+      instructor.surname = 'b' * 51
+      expect(instructor).not_to be_valid
+      expect(instructor.errors[:name]).to include('is too long (maximum is 50 characters)')
+      expect(instructor.errors[:surname]).to include('is too long (maximum is 50 characters)')
+    end
+
+    it 'is invalid already existing an email' do
+      instructor2 = build :instructor, email: instructor.email
+      expect(instructor2).not_to be_valid
+      expect(instructor2.errors[:email]).to include('has already been taken')
+    end
+  end
+
+  describe '#set_status' do
+    it 'sets the status after instructor created' do
+      expect(instructor).to receive(:set_status)
+      instructor.run_callbacks(:create)
+    end
+  end
 end
