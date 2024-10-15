@@ -4,6 +4,6 @@ FactoryBot.define do
 
     name { Faker::Name.first_name }
     description { Faker::Lorem.sentence }
-    status { 10 }
+    status { :inactive }
   end
 end

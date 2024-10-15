@@ -34,5 +34,6 @@ Lint/UnusedMethodArgument:
 Style/FrozenStringLiteralComment:
   Enabled: false
 
-Layout/TrailingEmptyLines:
-  Enabled: true
+Metrics/BlockLength:
+  Exclude:
+    - 'spec/**/*'
