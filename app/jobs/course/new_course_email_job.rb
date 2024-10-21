@@ -1,4 +1,4 @@
-class EmailSendJob
+class Course::NewCourseEmailJob
   include Sidekiq::Job
 
   def perform(instructor_id, course_id)

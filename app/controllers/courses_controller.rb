@@ -22,7 +22,7 @@ class CoursesController < ApplicationController
     sender = @course.instructor
 
     if @course.save
-      EmailSendJob.perform_async(sender.id, @course.id)
+      Course::NewCourseEmailJob.perform_async(sender.id, @course.id)
       redirect_to course_path(@course)
     else
       render 'new'
