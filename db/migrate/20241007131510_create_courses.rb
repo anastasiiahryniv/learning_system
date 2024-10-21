@@ -3,7 +3,7 @@ class CreateCourses < ActiveRecord::Migration[6.1]
     t.string "name", null: false
     t.bigint "instructor_id", null: false
     t.text "description"
-    t.integer "status", default: 30
+    t.integer "status"
     t.timestamps
   end
 
