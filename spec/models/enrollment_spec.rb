@@ -1,40 +1,26 @@
 require 'rails_helper'
 
 RSpec.describe Enrollment, type: :model do
-  let(:student) { create :student }
-  let(:instructor) { create :instructor }
-  let(:course) { create :course, instructor: }
-  let(:enrollment) { create :enrollment, student:, course: }
+  let(:enrollment) { create :enrollment }
 
-  describe 'enrollment' do
-    it 'is valid' do
-      expect(enrollment).to be_valid
+  describe 'course' do
+    subject { build(:enrollment) }
+
+    describe 'database columns' do
+      it { is_expected.to have_db_column(:status).of_type(:integer) }
+      it { is_expected.to have_db_column(:grade).of_type(:integer) }
     end
 
-    it 'is invalid without grade' do
-      enrollment.grade = nil
-      expect(enrollment).not_to be_valid
-      expect(enrollment.errors[:grade]).to include("can't be blank")
+    describe 'associations' do
+      it { is_expected.to belong_to(:student)}
+      it { is_expected.to belong_to(:course)}
     end
 
-    it 'is invalid when grade is greater than MAX_GRADE' do
-      enrollment.grade = 11
-      expect(enrollment).not_to be_valid
-      expect(enrollment.errors[:grade]).to include('must be less than or equal to 10')
-    end
-
-    it 'is invalid when grade is lower than MIN_GRADE' do
-      enrollment.grade = 0
-      expect(enrollment).not_to be_valid
-      expect(enrollment.errors[:grade]).to include('must be greater than or equal to 1')
-    end
-
-    it 'should belong to student' do
-      expect(student).to be enrollment.student
-    end
-
-    it 'should belong to course' do
-      expect(course).to be enrollment.course
+    describe 'validations' do
+      it { is_expected.to be_valid }
+      it { is_expected.to validate_presence_of(:grade) }
+      it { is_expected.to validate_numericality_of(:grade).is_greater_than_or_equal_to(Enrollment::MIN_GRADE) }
+      it { is_expected.to validate_numericality_of(:grade).is_less_than_or_equal_to(Enrollment::MAX_GRADE) }
     end
   end
 end

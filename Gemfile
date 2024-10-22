@@ -44,6 +44,7 @@ group :development, :test do
   gem 'faker', '~> 3.4', '>= 3.4.2'
   gem 'letter_opener'
   gem 'rspec-rails', '~> 5.1'
+  gem 'shoulda-matchers', '~> 6.2.0'
 end
 
 group :development do

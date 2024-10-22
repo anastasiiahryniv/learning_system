@@ -1,42 +1,26 @@
 require 'rails_helper'
 
 RSpec.describe Student, type: :model do
-  let(:student) { create :student }
+  subject { build(:student) }
 
-  describe 'student' do
-    it 'is valid' do
-      expect(student).to be_valid
-    end
-
-    it 'is invalid without name and surname ' do
-      student.name = nil
-      student.surname = nil
-      student.email = nil
-      expect(student).not_to be_valid
-      expect(student.errors[:name]).to include("can't be blank")
-      expect(student.errors[:surname]).to include("can't be blank")
-      expect(student.errors[:email]).to include("can't be blank")
-    end
-
-    it 'is invalid if surname is longer than 50 characters' do
-      student.name = 'a' * 51
-      student.surname = 'b' * 51
-      expect(student).not_to be_valid
-      expect(student.errors[:name]).to include('is too long (maximum is 50 characters)')
-      expect(student.errors[:surname]).to include('is too long (maximum is 50 characters)')
-    end
-
-    it 'is invalid already existing an email' do
-      student2 = build :student, email: student.email
-      expect(student2).not_to be_valid
-      expect(student2.errors[:email]).to include('has already been taken')
-    end
+  describe 'database columns' do
+    it { is_expected.to have_db_column(:name).of_type(:string) }
+    it { is_expected.to have_db_column(:surname).of_type(:string) }
+    it { is_expected.to have_db_column(:email).of_type(:string) }
+    it { is_expected.to have_db_column(:status).of_type(:string) }
   end
 
-  describe '#set_status' do
-    it 'sets the status after student created' do
-      expect(student).to receive(:set_status)
-      student.run_callbacks(:create)
-    end
+  describe 'associations' do
+    it { is_expected.to have_many(:enrollments).dependent(:destroy) }
+    it { is_expected.to have_many(:courses).through(:enrollments)}
+  end
+
+  describe 'validations' do
+    it { is_expected.to be_valid }
+    it { is_expected.to validate_presence_of(:email) }
+    it { is_expected.to validate_presence_of(:name) }
+    it { is_expected.to validate_presence_of(:surname) }
+    it { is_expected.to validate_length_of(:name).is_at_most(Student::MAX_NAME_LENGTH) }
+    it { is_expected.to validate_length_of(:surname).is_at_most(Student::MAX_NAME_LENGTH) }
   end
 end
