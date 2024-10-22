@@ -12,7 +12,7 @@ RSpec.describe Student, type: :model do
 
   describe 'associations' do
     it { is_expected.to have_many(:enrollments).dependent(:destroy) }
-    it { is_expected.to have_many(:courses).through(:enrollments)}
+    it { is_expected.to have_many(:courses).through(:enrollments) }
   end
 
   describe 'validations' do

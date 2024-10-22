@@ -15,7 +15,7 @@ RSpec.describe Course, type: :model do
     describe 'associations' do
       it { is_expected.to have_many(:enrollments).dependent(:destroy) }
       it { is_expected.to have_many(:students).through(:enrollments) }
-      it { is_expected.to belong_to(:instructor)}
+      it { is_expected.to belong_to(:instructor) }
     end
 
     describe 'validations' do

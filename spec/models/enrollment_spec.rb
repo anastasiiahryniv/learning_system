@@ -12,8 +12,8 @@ RSpec.describe Enrollment, type: :model do
     end
 
     describe 'associations' do
-      it { is_expected.to belong_to(:student)}
-      it { is_expected.to belong_to(:course)}
+      it { is_expected.to belong_to(:student) }
+      it { is_expected.to belong_to(:course) }
     end
 
     describe 'validations' do
