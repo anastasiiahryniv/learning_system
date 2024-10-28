@@ -2,9 +2,9 @@ class CoursesController < ApplicationController
   before_action :set_course, only: %i[show edit update destroy]
   before_action :authenticate_instructor!
 
-  # GET /courses or /courses.json
   def index
-    @courses = Course.all
+    @q = Course.ransack(params[:q])
+    @courses = @q.result(distinct: true).where(instructor_id: current_instructor.id)
   end
 
   def show

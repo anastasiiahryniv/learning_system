@@ -11,3 +11,11 @@ body {
   height: 1px;
   background: #eee;
 }
+
+table tr td, table tr th{
+  background-color: transparent !important;
+}
+
+a{
+  color: black;
+}
