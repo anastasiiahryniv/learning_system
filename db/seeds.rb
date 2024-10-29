@@ -7,6 +7,16 @@ Instructor.find_or_create_by(email: "instructor@mail.com") do |instructor|
   instructor.status = "pending"
   instructor.password = PASSWORD
   instructor.password_confirmation = PASSWORD
+  instructor.role = "instructor"
+end
+
+Instructor.find_or_create_by(email: "instructor_admin@mail.com") do |instructor|
+  instructor.name = Faker::Name.first_name
+  instructor.surname = Faker::Name.last_name
+  instructor.status = "pending"
+  instructor.password = PASSWORD
+  instructor.password_confirmation = PASSWORD
+  instructor.role = "instructor_admin"
 end
 
 Student.find_or_create_by(email: "student@mail.com") do |student|
