@@ -3,10 +3,10 @@
   <%= form_with(model: @course, local: true) do |form| %>
     <div data-mdb-input-init class="form-outline mb-2">
       <%= form.text_field :name,
-                       autofocus: true,
-                       autocomplete: 'name',
-                       placeholder: 'course name',
-                       class: 'form-control' %>
+                          autofocus: true,
+                          autocomplete: 'name',
+                          placeholder: 'course name',
+                          class: 'form-control' %>
     </div>
     <div data-mdb-input-init class="form-outline mb-3">
       <%= form.text_field :description,

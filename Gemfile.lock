@@ -235,7 +235,7 @@ GEM
       thor (~> 1.0)
     rainbow (3.1.1)
     rake (13.2.1)
-    ransack (3.2.1)
+    ransack (4.2.1)
       activerecord (>= 6.1.5)
       activesupport (>= 6.1.5)
       i18n
@@ -392,7 +392,7 @@ DEPENDENCIES
   pundit (~> 2.1)
   rack-mini-profiler (~> 2.0)
   rails (~> 6.1.7, >= 6.1.7.8)
-  ransack (~> 3.0)
+  ransack (~> 4.0)
   rspec-rails (~> 5.1)
   rubocop-rails
   sass-rails (>= 6)

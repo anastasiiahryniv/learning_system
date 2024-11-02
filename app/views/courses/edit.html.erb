@@ -18,9 +18,9 @@
     </div>
     <div data-mdb-input-init class="form-outline mb-2">
       <%= form.select :status,
-                      options_for_select([['Active', 'active'],
-                                          ['Inactive', 'inactive'],
-                                          ['Draft', 'draft']],
+                      options_for_select([%w[Active active],
+                                          %w[Inactive inactive],
+                                          %w[Draft draft]],
                                          selected: @course.status),
                       {},
                       class: 'form-control',
