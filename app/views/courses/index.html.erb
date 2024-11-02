@@ -18,10 +18,12 @@
           <td><%= course.name.truncate(40)%></td>
           <td><%=course.description.truncate(40) %></td>
           <td><%= course.status %></td>
-          <td><%= 1 %></td>
+          <td><%= course&.students.count %></td>
           <td>
             <%= link_to 'Show', course %>
-            <%= link_to 'Update', edit_course_path(course) %>
+            <% if policy(Course).update?  %>
+              <%= link_to 'Update', edit_course_path(course) %>
+            <% end%>
             <% if policy(Course).destroy?  %>
               <%= link_to 'Destroy', course, method: :delete, data: { confirm: 'Are you sure?' } %>
             <% end%>

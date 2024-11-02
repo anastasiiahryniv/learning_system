@@ -1,34 +1,29 @@
 class CoursePolicy < ApplicationPolicy
-  class Scope
-    attr_reader :instructor, :scope
-
-    def initialize(instructor, scope)
-      @instructor = instructor
-      @scope = scope
-    end
-
+  class Scope < Scope
     def resolve
-      if instructor.instructor_admin?
+      if user.is_a?(Instructor) && user.instructor_admin?
         scope.all
-      else
-        scope.where(instructor_id: instructor.id)
+      elsif user.is_a?(Instructor) && user.instructor?
+        scope.where(instructor_id: user.id)
+      elsif user.is_a?(Student)
+        scope.all
       end
     end
   end
 
   def index?
-    instructor.instructor? || instructor.instructor_admin?
+    user.is_a?(Instructor) || user.is_a?(Student)
   end
 
   def create?
-    instructor.instructor?
+    user.is_a?(Instructor) && user.instructor?
   end
 
   def update?
-    index?
+    create?
   end
 
   def destroy?
-    instructor.instructor_admin?
+    user.is_a?(Instructor) && user.instructor_admin?
   end
 end

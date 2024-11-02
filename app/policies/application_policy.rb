@@ -1,11 +1,20 @@
 # frozen_string_literal: true
 
 class ApplicationPolicy
-  attr_reader :instructor, :course
+  attr_reader :user, :record
 
-  def initialize(instructor, course)
-    @instructor = instructor
-    @course = course
+  def initialize(user, record)
+    @user = user
+    @record = record
+  end
+
+  class Scope
+    attr_reader :user, :scope
+
+    def initialize(user, scope)
+      @user = user
+      @scope = scope
+    end
   end
 
   def index?

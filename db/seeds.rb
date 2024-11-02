@@ -30,7 +30,8 @@ end
 Course.find_or_create_by(name: "Ruby on Rails") do |course|
   course.description = "A course for learning Ruby on Rails"
   course.status = "inactive"
-  course.instructor = Instructor.first  # Assuming this instructor was created in the previous step
+  course.instructor = Instructor.first
+  course.student = Student.first# Assuming this instructor was created in the previous step
 end
 
 Enrollment.find_or_create_by(student: Student.first, course: Course.first) do |enrollment|
