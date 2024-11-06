@@ -6,7 +6,7 @@ class CoursePolicy < ApplicationPolicy
       elsif user.is_a?(Instructor) && user.instructor?
         scope.where(instructor_id: user.id)
       elsif user.is_a?(Student)
-        scope.all
+        scope.where(status: 20)
       end
     end
   end
@@ -17,6 +17,10 @@ class CoursePolicy < ApplicationPolicy
 
   def create?
     user.is_a?(Instructor) && user.instructor?
+  end
+
+  def new?
+    create?
   end
 
   def update?

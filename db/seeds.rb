@@ -16,7 +16,7 @@ Instructor.find_or_create_by(email: "instructor_admin@mail.com") do |instructor|
   instructor.status = "pending"
   instructor.password = PASSWORD
   instructor.password_confirmation = PASSWORD
-  instructor.role = "instructor_admin"
+  instructor.role = 20
 end
 
 Student.find_or_create_by(email: "student@mail.com") do |student|

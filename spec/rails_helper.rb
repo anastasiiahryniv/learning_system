@@ -1,6 +1,9 @@
 require 'spec_helper'
 require 'capybara/rspec'
 require 'selenium-webdriver'
+require 'simplecov'
+SimpleCov.start
+SimpleCov.minimum_coverage 100
 
 ENV['RAILS_ENV'] ||= 'test'
 require_relative '../config/environment'

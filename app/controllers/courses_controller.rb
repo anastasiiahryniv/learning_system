@@ -1,10 +1,10 @@
 class CoursesController < ApplicationController
   before_action :set_course, only: %i[show edit update destroy]
+  before_action :authorize_policy
 
   def index
     @q = Course.ransack(params[:q])
     @courses = policy_scope(@q.result(distinct: true))
-    authorize @courses
   end
 
   def show
@@ -12,7 +12,6 @@ class CoursesController < ApplicationController
 
   def new
     @course = Course.new
-    authorize @course
   end
 
   def edit
@@ -20,7 +19,6 @@ class CoursesController < ApplicationController
 
   def create
     @course = current_instructor.courses.build(course_params)
-    authorize @course
 
     sender = @course.instructor
 
@@ -41,7 +39,6 @@ class CoursesController < ApplicationController
   end
 
   def destroy
-    authorize @course
     @course.destroy
     redirect_to courses_path
   end
@@ -54,5 +51,13 @@ class CoursesController < ApplicationController
 
   def course_params
     params.require(:course).permit(:name, :description, :status)
+  end
+
+  def authorize_policy
+    authorize(Course)
+  end
+
+  def permitted_course
+    policy_scope(Course)
   end
 end
