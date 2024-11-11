@@ -18,11 +18,11 @@ class CoursesController < ApplicationController
   end
 
   def create
-    @course = CourseCreationService.new(course_params, current_instructor.id, self).create_course
+    CourseCreationService.new(course_params, current_instructor.id, self).create_course
   end
 
   def update
-    CourseUpdatingService.new(@course, course_params, self).update_course      # redirect_to course_path(@course)
+    CourseUpdatingService.new(@course, course_params, self).update_course
   end
 
   def destroy
