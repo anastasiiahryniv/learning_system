@@ -18,29 +18,15 @@ class CoursesController < ApplicationController
   end
 
   def create
-    @course = current_instructor.courses.build(course_params)
-
-    sender = @course.instructor
-
-    if @course.save
-      Course::NewCourseEmailJob.perform_async(sender.id, @course.id)
-      redirect_to course_path(@course)
-    else
-      render 'new'
-    end
+    @course = CourseCreationService.new(course_params, current_instructor.id, self).create_course
   end
 
   def update
-    if @course.update(course_params)
-      redirect_to course_path(@course)
-    else
-      render 'edit'
-    end
+    CourseUpdatingService.new(@course, course_params, self).update_course      # redirect_to course_path(@course)
   end
 
   def destroy
-    CourseDeletionService.new(@course, flash).delete
-    redirect_to courses_path
+    CourseDeletionService.new(@course, self).delete
   end
 
   private

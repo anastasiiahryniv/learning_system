@@ -1,14 +1,15 @@
 class CourseDeletionService
-  def initialize(course, flash)
+  def initialize(course, controller)
     @course = course
-    @flash = flash
+    @controller = controller
   end
 
   def delete
     if @course.destroy
-      @flash[:notice] = I18n.t 'course_deletion_success'
+      @controller.flash[:notice] = I18n.t('course_deletion_success')
+      @controller.redirect_to @controller.courses_path
     else
-      @flash[:alert] = I18n.t 'course_deletion_failed'
+      @controller.flash[:alert] = I18n.t('course_deletion_failed')
     end
   end
 end

@@ -31,8 +31,12 @@
 
 en:
   hello: "Hello world"
-  not_authorized: "You are not authorized to perform this action."
-  course_enrollment: "You have successfully enrolled in the course."
-  enrollment_failed: "Enrollment failed."
-  course_deletion_success: "Course was successfully deleted."
-  course_deletion_failed: "Course deletion failed."
+  not_authorized: "Access denied: You do not have permission to perform this action."
+  course_enrollment_success: "Enrolled in the course successfully."
+  course_enrollment_failed: "Enrollment could not be completed."
+  course_deletion_success: "Course deleted successfully."
+  course_deletion_failed: "Course could not be deleted."
+  course_update_success: "Course updated successfully."
+  course_update_failed: "Course could not be updated."
+  course_create_success: "Course created successfully."
+  course_create_failed: "Course could not be created."
