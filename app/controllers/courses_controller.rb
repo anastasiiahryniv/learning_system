@@ -39,7 +39,7 @@ class CoursesController < ApplicationController
   end
 
   def destroy
-    @course.destroy
+    CourseDeletionService.new(@course, flash).delete
     redirect_to courses_path
   end
 

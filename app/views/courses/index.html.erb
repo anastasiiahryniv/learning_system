@@ -8,7 +8,7 @@
         <th scope="col"><%= sort_link(@q, :name, 'Course Name', default_order: :asc) %> </th>
         <th scope="col"><%= sort_link(@q, :description, 'Description', default_order: :asc) %>  </th>
         <th scope="col"><%= sort_link(@q, :status, 'Status', default_order: :asc) %> </th>
-        <th scope="col">Students count </th>
+        <th scope="col"><%= sort_link(@q, :students_count, 'Students count', default_order: :asc) %> </th>
         <th scope="col">Links</th>
       </tr>
     </thead>
@@ -18,7 +18,7 @@
           <td><%= course.name.truncate(40)%></td>
           <td><%=course.description.truncate(40) %></td>
           <td><%= course.status %></td>
-          <td><%= course&.students&.count %></td>
+          <td><%= course.students.size %></td>
           <td>
             <%= link_to 'Show', course %>
             <% if policy(Course).update?  %>

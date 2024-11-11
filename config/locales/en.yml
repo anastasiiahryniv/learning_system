@@ -34,3 +34,5 @@ en:
   not_authorized: "You are not authorized to perform this action."
   course_enrollment: "You have successfully enrolled in the course."
   enrollment_failed: "Enrollment failed."
+  course_deletion_success: "Course was successfully deleted."
+  course_deletion_failed: "Course deletion failed."

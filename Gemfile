@@ -50,6 +50,7 @@ group :development, :test do
   gem 'letter_opener'
   gem 'rspec-rails', '~> 5.1'
   gem 'shoulda-matchers', '~> 6.2.0'
+  gem 'rails-controller-testing', '~> 0.0.3'
 end
 
 group :development do
