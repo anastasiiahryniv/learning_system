@@ -1,6 +1,8 @@
 require 'sidekiq/web'
 
 Rails.application.routes.draw do
+  resources :tags
+
   devise_for :instructors
   devise_for :students
 

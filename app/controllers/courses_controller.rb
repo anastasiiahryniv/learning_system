@@ -4,7 +4,11 @@ class CoursesController < ApplicationController
 
   def index
     @q = Course.ransack(params[:q])
-    @courses = policy_scope(@q.result(distinct: true))
+    @courses = policy_scope(@q.result(distinct: true)).includes(:tags)
+
+    if params[:tag].present?
+      @courses = @courses.joins(:tags).where(tags: { name: params[:tag] })
+    end
   end
 
   def show
@@ -18,7 +22,7 @@ class CoursesController < ApplicationController
   end
 
   def create
-    CourseCreationService.new(course_params, current_instructor.id, self).create_course
+    CourseCreationService.new(course_params.except(:tags), current_instructor.id, self, params[:course][:tags]).create_course
   end
 
   def update
@@ -36,7 +40,7 @@ class CoursesController < ApplicationController
   end
 
   def course_params
-    params.require(:course).permit(:name, :description, :status)
+    params.require(:course).permit(:name, :description, :status, :tags)
   end
 
   def authorize_policy

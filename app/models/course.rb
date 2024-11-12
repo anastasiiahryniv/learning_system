@@ -8,6 +8,9 @@ class Course < ApplicationRecord
   has_many :enrollments, dependent: :destroy
   has_many :students, through: :enrollments, counter_cache: true
 
+  has_many :taggables, dependent:  :destroy
+  has_many :tags, through: :taggables
+
   # Validations
   validates :name, presence: true, length: { maximum: MAX_COURSE_NAME_LENGTH }
   validates :description, length: { maximum: MAX_DESCRIPTION_LENGTH }

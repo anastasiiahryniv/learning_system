@@ -8,12 +8,22 @@
                           placeholder: 'course name',
                           class: 'form-control' %>
     </div>
-    <div data-mdb-input-init class="form-outline mb-3">
+    <div data-mdb-input-init class="form-outline mb-2">
       <%= form.text_field :description,
                           autofocus: true,
                           autocomplete: 'description',
                           placeholder: 'course description',
                           class: 'form-control' %>
+    </div>
+
+    <div data-mdb-input-init class="form-outline mb-3">
+      <%= form.select :tags,
+                      options_for_select([%w[Music music],
+                                          %w[Languages languages],
+                                          %w[Maths maths]]),
+                      {selected: "", disabled: "", prompt: "Select your course tag" },
+                      class: 'form-control'
+      %>
     </div>
     <div class="actions">
       <%= form.submit 'Submit', class: 'btn btn-secondary btn-block'%>
