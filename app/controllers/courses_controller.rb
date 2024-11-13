@@ -4,11 +4,7 @@ class CoursesController < ApplicationController
 
   def index
     @q = Course.ransack(params[:q])
-    @courses = policy_scope(@q.result(distinct: true)).includes(:tags)
-
-    if params[:tag].present?
-      @courses = @courses.joins(:tags).where(tags: { name: params[:tag] })
-    end
+    @courses = CoursesQuery.new(relation: @q.result(distinct: true), params: filter_params).call
   end
 
   def show
@@ -49,5 +45,9 @@ class CoursesController < ApplicationController
 
   def permitted_course
     policy_scope(Course)
+  end
+
+  def filter_params
+    params.permit(:search, :sort_by, :tag)
   end
 end
