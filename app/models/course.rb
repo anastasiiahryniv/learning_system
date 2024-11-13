@@ -18,11 +18,11 @@ class Course < ApplicationRecord
   after_create :set_status
 
   def self.ransackable_attributes(auth_object = nil)
-    ["created_at", "description", "id", "instructor_id", "name", "status", "updated_at", "students_count"]
+    %w[created_at description id instructor_id name status updated_at students_count]
   end
 
   def self.ransackable_associations(auth_object = nil)
-    ["enrollments", "instructor", "students"]
+    %w[enrollments instructor students]
   end
 
   private
