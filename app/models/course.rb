@@ -8,7 +8,7 @@ class Course < ApplicationRecord
   has_many :enrollments, dependent: :destroy
   has_many :students, through: :enrollments, counter_cache: true
 
-  has_many :taggables, dependent:  :destroy
+  has_many :taggables, dependent: :destroy
   has_many :tags, through: :taggables
 
   # Validations
@@ -21,11 +21,11 @@ class Course < ApplicationRecord
   after_create :set_status
 
   def self.ransackable_attributes(auth_object = nil)
-    ["created_at", "description", "id", "instructor_id", "name", "status", "updated_at", "students_count"]
+    %w[created_at description id instructor_id name status updated_at students_count]
   end
 
   def self.ransackable_associations(auth_object = nil)
-    ["enrollments", "instructor", "students"]
+    %w[enrollments instructor students]
   end
 
   private

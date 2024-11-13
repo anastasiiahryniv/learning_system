@@ -18,7 +18,8 @@ class CoursesController < ApplicationController
   end
 
   def create
-    CourseCreationService.new(course_params.except(:tags), current_instructor.id, self, params[:course][:tags]).create_course
+    CourseCreationService.new(course_params.except(:tags), current_instructor.id, self,
+                              params[:course][:tags]).create_course
   end
 
   def update

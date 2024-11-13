@@ -1,9 +1,9 @@
 class CoursesQuery
   SORTING = {
-    name_asc: -> (scope) { scope.order(name: :asc) },
-    name_desc: -> (scope) { scope.order(name: :desc) },
-    description_asc: -> (scope) { scope.order(description: :asc) },
-    description_desc: -> (scope) { scope.order(description: :desc) }
+    name_asc: ->(scope) { scope.order(name: :asc) },
+    name_desc: ->(scope) { scope.order(name: :desc) },
+    description_asc: ->(scope) { scope.order(description: :asc) },
+    description_desc: ->(scope) { scope.order(description: :desc) }
   }.freeze
 
   def initialize(relation:, params:)
@@ -28,7 +28,7 @@ class CoursesQuery
   end
 
   def filter_by_tag(scoped)
-    return scoped unless params[:tag].present?
+    return scoped if params[:tag].blank?
 
     scoped.joins(:tags).where(tags: { name: params[:tag] })
   end
