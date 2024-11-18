@@ -1,17 +1,15 @@
 class CourseUpdatingService
-  def initialize(course, params, controller)
+  def initialize(course, params, flash)
     @course = course
     @params = params
-    @controller = controller
+    @flash = flash
   end
 
-  def update_course
+  def call
     if @course.update(@params)
-      @controller.flash[:notice] = I18n.t('course_update_success')
-      @controller.redirect_to @controller.course_path(@course)
+      @flash[:notice] = I18n.t('course_update_success')
     else
-      @controller.flash.now[:alert] = I18n.t('course_update_failed')
-      @controller.render :edit
+      @flash.now[:alert] = I18n.t('course_update_failed')
     end
   end
 end

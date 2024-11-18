@@ -4,7 +4,7 @@ class CoursesController < ApplicationController
 
   def index
     @q = Course.ransack(params[:q])
-    @courses = CoursesQuery.new(relation: @q.result(distinct: true), params: filter_params).call
+    @courses = CoursesQuery.new(relation: @q.result(distinct: true).includes(:tags), params: filter_params).call.decorate
   end
 
   def show
@@ -18,16 +18,28 @@ class CoursesController < ApplicationController
   end
 
   def create
-    CourseCreationService.new(course_params.except(:tags), current_instructor.id, self,
-                              params[:course][:tags]).create_course
+    @course = CourseCreationService.new(course_params, current_instructor.id, params[:course][:tags]).call
+    if @course.save
+      flash[:notice] = I18n.t('course_create_success')
+      redirect_to course_path(@course)
+    else
+      flash[:notice] = I18n.t('course_create_failed')
+      render :new
+    end
   end
 
   def update
-    CourseUpdatingService.new(@course, course_params, self).update_course
+    service = CourseUpdatingService.new(@course, course_params, flash)
+    if service.call
+      redirect_to course_path(@course)
+    else
+      render :edit
+    end
   end
 
   def destroy
-    CourseDeletionService.new(@course, self).delete
+    @course.destroy
+    redirect_to courses_path
   end
 
   private
