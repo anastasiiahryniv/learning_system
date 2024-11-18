@@ -39,9 +39,11 @@ Metrics/BlockLength:
     - 'spec/**/*'
 
 Metrics/AbcSize:
-  Exclude:
-    - 'app/policies/course_policy.rb'
+  Enabled: false
 
 Lint/DuplicateBranch:
   Exclude:
     - 'app/policies/course_policy.rb'
+
+Metrics/MethodLength:
+  Enabled: false

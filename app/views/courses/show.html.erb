@@ -1,4 +1,3 @@
-<p id="notice"><%= notice %></p>
 <div>
   <strong>Name:</strong>
   <%= @course.name %>
@@ -10,6 +9,12 @@
 <div>
   <strong>Status:</strong>
   <%= @course.status %>
+</div>
+<div>
+  <strong>Tags:</strong>
+  <% @course.tags.each do |tag| %>
+    <span class="badge rounded-pill bg-light text-dark"><%= tag.name %></span>
+  <% end %>
 </div>
 
 <div class="mt-2">

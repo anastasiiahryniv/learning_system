@@ -10,7 +10,7 @@ class CourseUpdatingService
       @controller.flash[:notice] = I18n.t('course_update_success')
       @controller.redirect_to @controller.course_path(@course)
     else
-      @controller.flash[:alert] = I18n.t('course_update_failed')
+      @controller.flash.now[:alert] = I18n.t('course_update_failed')
       @controller.render :edit
     end
   end
