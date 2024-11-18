@@ -1,10 +1,11 @@
 class CoursesController < ApplicationController
   before_action :set_course, only: %i[show edit update destroy]
-  before_action :authenticate_instructor!
+  before_action :authorize_policy
 
-  # GET /courses or /courses.json
   def index
-    @courses = Course.all
+    @q = Course.ransack(params[:q])
+    @courses = CoursesQuery.new(relation: @q.result(distinct: true).includes(:tags),
+                                params: filter_params).call.decorate
   end
 
   def show
@@ -18,22 +19,23 @@ class CoursesController < ApplicationController
   end
 
   def create
-    @course = current_instructor.courses.build(course_params)
-    sender = @course.instructor
-
-    if @course.save
-      Course::NewCourseEmailJob.perform_async(sender.id, @course.id)
+    service = CourseCreationService.new(course_params, current_instructor.id, params[:course][:tags])
+    if service.call
+      @course = service.course
+      flash[:notice] = I18n.t('course_create_success')
       redirect_to course_path(@course)
     else
-      render 'new'
+      flash[:notice] = I18n.t('course_create_failed')
+      render :new
     end
   end
 
   def update
-    if @course.update(course_params)
+    service = CourseUpdatingService.new(@course, course_params, flash)
+    if service.call
       redirect_to course_path(@course)
     else
-      render 'edit'
+      render :edit
     end
   end
 
@@ -49,6 +51,18 @@ class CoursesController < ApplicationController
   end
 
   def course_params
-    params.require(:course).permit(:name, :description, :status)
+    params.require(:course).permit(:name, :description, :status, :tags)
+  end
+
+  def authorize_policy
+    authorize(Course)
+  end
+
+  def permitted_course
+    policy_scope(Course)
+  end
+
+  def filter_params
+    params.permit(:search, :sort_by, :tag)
   end
 end

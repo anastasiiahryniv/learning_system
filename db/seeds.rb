@@ -7,6 +7,16 @@ Instructor.find_or_create_by(email: "instructor@mail.com") do |instructor|
   instructor.status = "pending"
   instructor.password = PASSWORD
   instructor.password_confirmation = PASSWORD
+  instructor.role = "instructor"
+end
+
+Instructor.find_or_create_by(email: "instructor_admin@mail.com") do |instructor|
+  instructor.name = Faker::Name.first_name
+  instructor.surname = Faker::Name.last_name
+  instructor.status = "pending"
+  instructor.password = PASSWORD
+  instructor.password_confirmation = PASSWORD
+  instructor.role = 20
 end
 
 Student.find_or_create_by(email: "student@mail.com") do |student|
@@ -20,7 +30,7 @@ end
 Course.find_or_create_by(name: "Ruby on Rails") do |course|
   course.description = "A course for learning Ruby on Rails"
   course.status = "inactive"
-  course.instructor = Instructor.first  # Assuming this instructor was created in the previous step
+  course.instructor = Instructor.first
 end
 
 Enrollment.find_or_create_by(student: Student.first, course: Course.first) do |enrollment|

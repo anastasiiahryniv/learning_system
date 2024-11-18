@@ -1,15 +1,35 @@
-<h1>Editing Course</h1>
+<div class="col-md-7 col-lg-5 col-xl-5 offset-xl-1">
+  <h3>Update Course</h3>
+  <%= form_with(model: @course, local: true) do |form| %>
+    <div data-mdb-input-init class="form-outline mb-2">
 
-<%= form_with(model: @course, local: true) do |form| %>
-
-  <%= form.label :name %>
-  <%= form.text_field :name %>
-
-  <%= form.label :description %>
-  <%= form.text_area :description %>
-
-  <%= form.submit %>
-<% end %>
-
-<%= link_to 'Show', @course %> |
-<%= link_to 'Back', courses_path %>
+      <%= form.text_field :name,
+                          autofocus: true,
+                          autocomplete: 'name',
+                          placeholder: 'course name',
+                          class: 'form-control' %>
+    </div>
+    <div data-mdb-input-init class="form-outline mb-2">
+      <%= form.text_field :description,
+                          autofocus: true,
+                          autocomplete: 'description',
+                          placeholder: 'course description',
+                          class: 'form-control' %>
+    </div>
+    <div data-mdb-input-init class="form-outline mb-2">
+      <%= form.select :status,
+                      options_for_select([%w[Active active],
+                                          %w[Inactive inactive],
+                                          %w[Draft draft]],
+                                         selected: @course.status),
+                      {},
+                      class: 'form-control',
+                      placeholder: 'Select status' %>
+    </div>
+    <div class="actions">
+      <%= form.submit 'Update Course', class: 'btn btn-secondary btn-block'%>
+      <%= link_to 'Show', @course, class: 'btn btn-secondary btn-block' %>
+      <%= link_to 'Back', courses_path, class: 'btn btn-secondary btn-block'%>
+    </div>
+  <% end %>
+</div>

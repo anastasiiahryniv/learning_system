@@ -37,3 +37,13 @@ Style/FrozenStringLiteralComment:
 Metrics/BlockLength:
   Exclude:
     - 'spec/**/*'
+
+Metrics/AbcSize:
+  Enabled: false
+
+Lint/DuplicateBranch:
+  Exclude:
+    - 'app/policies/course_policy.rb'
+
+Metrics/MethodLength:
+  Enabled: false
