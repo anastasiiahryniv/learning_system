@@ -14,7 +14,7 @@ class CourseCreationService
         mailer(c.instructor.id, c.id)
         create_or_delete_course_tags(c, @tags)
       else
-        @controller.flash[:notice] = I18n.t('course_create_failed')
+        @controller.flash.now[:alert] = I18n.t('course_create_failed')
         @controller.render :new
       end
     end
