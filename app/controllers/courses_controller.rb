@@ -4,7 +4,8 @@ class CoursesController < ApplicationController
 
   def index
     @q = Course.ransack(params[:q])
-    @courses = CoursesQuery.new(relation: @q.result(distinct: true).includes(:tags), params: filter_params).call.decorate
+    @courses = CoursesQuery.new(relation: @q.result(distinct: true).includes(:tags),
+                                params: filter_params).call.decorate
   end
 
   def show
@@ -18,8 +19,9 @@ class CoursesController < ApplicationController
   end
 
   def create
-    @course = CourseCreationService.new(course_params, current_instructor.id, params[:course][:tags]).call
-    if @course.save
+    service = CourseCreationService.new(course_params, current_instructor.id, params[:course][:tags])
+    if service.call
+      @course = service.course
       flash[:notice] = I18n.t('course_create_success')
       redirect_to course_path(@course)
     else
