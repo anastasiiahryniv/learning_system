@@ -46,6 +46,3 @@ Shoulda::Matchers.configure do |config|
   end
 end
 
-# Pundit::Matchers.configure do |config|
-#   config.default_user_alias = :user
-# end

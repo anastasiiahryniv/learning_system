@@ -1,5 +1,10 @@
 require 'rails_helper'
 
 RSpec.describe Taggable, type: :model do
-  pending "add some examples to (or delete) #{__FILE__}"
+  describe 'taggable' do
+    describe 'associations' do
+      it { is_expected.to belong_to(:course) }
+      it { is_expected.to belong_to(:tag) }
+    end
+  end
 end
