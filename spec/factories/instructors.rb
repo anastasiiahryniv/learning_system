@@ -5,5 +5,6 @@ FactoryBot.define do
     email { Faker::Internet.email }
     password { Faker::Internet.password }
     status { :active }
+    role { :instructor }
   end
 end
