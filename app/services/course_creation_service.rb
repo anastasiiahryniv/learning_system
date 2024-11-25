@@ -11,7 +11,7 @@ class CourseCreationService
     Course.transaction do
       @course = course_build
       @course.save!
-      create_or_delete_course_tags(@course, @tags)
+      create_course_tags(@course, @tags)
     end
 
     send_mail(@instructor_id, @course.id)
@@ -28,7 +28,7 @@ class CourseCreationService
     Course::NewCourseEmailJob.perform_async(sender_id, course_id)
   end
 
-  def create_or_delete_course_tags(course, tags)
+  def create_course_tags(course, tags)
     (tags || '').split(',').map(&:strip).each do |tag|
       course.tags << Tag.find_or_create_by(name: tag)
     end

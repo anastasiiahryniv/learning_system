@@ -30,6 +30,12 @@ RSpec.configure do |config|
   end
   Capybara.javascript_driver = :chrome
   Capybara.default_driver = :chrome
+
+  %i[controller view request].each do |type|
+    config.include(Rails::Controller::Testing::TestProcess, type:)
+    config.include(Rails::Controller::Testing::TemplateAssertions, type:)
+    config.include Rails::Controller::Testing::Integration, type:
+  end
 end
 
 Shoulda::Matchers.configure do |config|
