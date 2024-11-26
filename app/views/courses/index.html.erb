@@ -39,8 +39,9 @@
       <% end %>
     </tbody>
   </table>
-  <% if policy(Course).create?  %>
-    <%= link_to 'New Course', new_course_path %>
-  <% end%>
-  <%= link_to 'Dashboard', root_path%>
+  <div class="pagination-container">
+    <div class="d-flex justify-content-center">
+      <%= paginate @courses.object, class: 'pagination-grey' %>
+    </div>
+  </div>
 </div>

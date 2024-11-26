@@ -20,7 +20,7 @@ class CoursePolicy < ApplicationPolicy
   end
 
   def show?
-    user.is_a?(Instructor) && (user.instructor? || user.instructor_admin?)
+    index?
   end
 
   def new?

@@ -40,3 +40,10 @@ en:
   course_update_failed: "Course could not be updated."
   course_create_success: "Course created successfully."
   course_create_failed: "Course could not be created."
+  views:
+    pagination:
+      first: "First"
+      last: "Last"
+      previous: "Prev"
+      next: "Next"
+      truncate: "&hellip;"

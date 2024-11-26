@@ -1,0 +1,28 @@
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <span class="navbar-brand pl-2">eLEARNING</span>
+
+  <div class="collapse navbar-collapse" id="navbarNavDropdown">
+    <div class="navbar-nav">
+      <div class="nav-item ">
+        <%= link_to 'Home', root_path %>
+      </div>
+      <div class="nav-item">
+        <%= link_to 'All courses', courses_path %>
+      </div>
+      <div class="nav-item">
+        <%= link_to 'Enrolled courses', '#' %>
+      </div>
+      <% if instructor_signed_in? && policy(Course).create? %>
+        <div class="nav-item">
+          <%= link_to 'Add new course', new_course_path %>
+        </div>
+      <% end %>
+      <div class="vr"></div>
+      <div class="nav-item ">
+          <% if instructor_signed_in? || student_signed_in? %>
+            <%= instructor_signed_in? ? link_to('Sing out', destroy_instructor_session_path, method: :delete, data: { turbo_method: :delete }) : link_to('Sing out', destroy_student_session_path, method: :delete, data: { turbo_method: :delete }) %>
+          <% end %>
+      </div>
+    </div>
+  </div>
+</nav>

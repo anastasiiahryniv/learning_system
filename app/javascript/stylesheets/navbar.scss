@@ -1,0 +1,14 @@
+.nav-item a{
+  height: 25px;
+  width: auto;
+  color: rgba(0, 0, 0, 0.8);
+  text-decoration: none;
+  margin: 0 10px;
+  &:hover{
+    text-decoration: underline;
+  }
+}
+
+.navbar-brand{
+  padding-left: 10px;
+}

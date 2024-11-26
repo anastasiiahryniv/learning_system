@@ -1,0 +1,17 @@
+.page-item a,
+.page-item  {
+  color: rgb(86.4, 93.6, 100);
+  & a:hover{
+    color: black;
+  }
+}
+
+.page-item.active a,
+.page-item.active
+{
+  border: none;
+  background-color: rgb(86.4, 93.6, 100);
+  & a:hover{
+    color: white;
+  }
+}
