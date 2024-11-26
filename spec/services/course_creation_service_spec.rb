@@ -31,7 +31,11 @@ RSpec.describe CourseCreationService, type: :model do
 
     it 'does not create a course if transaction fails' do
       allow_any_instance_of(Course).to receive(:save!).and_raise(ActiveRecord::RecordInvalid)
-      expect { service.call rescue nil }.not_to change(Course, :count)
+      expect do
+        service.call
+      rescue StandardError
+        nil
+      end.not_to change(Course, :count)
     end
   end
 
