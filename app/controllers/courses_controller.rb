@@ -4,7 +4,8 @@ class CoursesController < ApplicationController
 
   def index
     @q = Course.ransack(params[:q])
-    query = CoursesQuery.new(relation: @q.result(distinct: true).includes(:tags), params: filter_params).call
+    query = CoursesQuery.new(relation: @q.result(distinct: true).includes(:tags), params: filter_params,
+                             student: current_student).call
     @courses = query.page(params[:page]).decorate
   end
 

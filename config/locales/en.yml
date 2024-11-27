@@ -40,6 +40,8 @@ en:
   course_update_failed: "Course could not be updated."
   course_create_success: "Course created successfully."
   course_create_failed: "Course could not be created."
+  course_is_successfully_enrolled: "You have successfully enrolled in the course."
+  course_is_already_enrolled: "You are already enrolled in this course."
   views:
     pagination:
       first: "First"

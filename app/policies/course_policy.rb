@@ -34,4 +34,8 @@ class CoursePolicy < ApplicationPolicy
   def destroy?
     user.is_a?(Instructor) && user.instructor_admin?
   end
+
+  def enroll?
+    user.is_a?(Student)
+  end
 end

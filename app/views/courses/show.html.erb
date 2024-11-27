@@ -1,10 +1,6 @@
-<div>
-  <strong>Name:</strong>
-  <%= @course.name %>
-</div>
-<div>
-  <strong>Description:</strong>
-  <%= @course.description %>
+<h3><%= @course.name %></h3>
+<div class="description">
+  " <%= @course.description %>"
 </div>
 <div>
   <strong>Status:</strong>
@@ -15,6 +11,31 @@
   <% @course.tags.each do |tag| %>
     <span class="badge rounded-pill bg-light text-dark"><%= tag.name %></span>
   <% end %>
+</div>
+
+<div class="table-responsive mt-5">
+  <table class="table table-striped table-hover">
+    <thead>
+      <tr>
+        <th scope="col">Name</th>
+        <th scope="col">Surname</th>
+        <th scope="col">email</th>
+        <th scope="col">status</th>
+        <th scope="col">grade</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @course.students.each do |student| %>
+        <tr>
+          <td><%= student.name%></td>
+          <td><%= student.surname%></td>
+          <td><%= student.email%></td>
+          <td><%= student.enrollments.find_by(course: @course)&.status%></td>
+          <td><%= student.enrollments.find_by(course: @course)&.grade%></td>
+        </tr>
+      <% end %>
+    </tbody>
+    </table>
 </div>
 
 <div class="mt-2">
