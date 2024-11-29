@@ -32,10 +32,12 @@ class CoursesController < ApplicationController
   end
 
   def update
-    service = CourseUpdatingService.new(@course, course_params, flash)
+    service = CourseUpdatingService.new(@course, course_params)
     if service.call
+      flash[:notice] = I18n.t('course_update_success')
       redirect_to course_path(@course)
     else
+      flash[:notice] = I18n.t('course_update_failed')
       render :edit
     end
   end

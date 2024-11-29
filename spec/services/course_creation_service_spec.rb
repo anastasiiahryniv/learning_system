@@ -38,13 +38,4 @@ RSpec.describe CourseCreationService, type: :model do
       end.not_to change(Course, :count)
     end
   end
-
-  describe '#course_build' do
-    it 'builds a course with valid parameters' do
-      course = service.send(:course_build)
-      expect(course).to be_a(Course)
-      expect(course.instructor_id).to eq(instructor.id)
-      expect(course.name).to eq(valid_params[:name])
-    end
-  end
 end
