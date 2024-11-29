@@ -12,6 +12,7 @@ abort('The Rails environment is running in production mode!') if Rails.env.produ
 
 require 'rspec/rails'
 require 'support/factory_bot'
+require 'pundit/matchers'
 
 begin
   ActiveRecord::Migration.maintain_test_schema!
@@ -30,6 +31,12 @@ RSpec.configure do |config|
   end
   Capybara.javascript_driver = :chrome
   Capybara.default_driver = :chrome
+
+  %i[controller view request].each do |type|
+    config.include(Rails::Controller::Testing::TestProcess, type:)
+    config.include(Rails::Controller::Testing::TemplateAssertions, type:)
+    config.include Rails::Controller::Testing::Integration, type:
+  end
 end
 
 Shoulda::Matchers.configure do |config|

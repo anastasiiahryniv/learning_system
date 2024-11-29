@@ -18,7 +18,7 @@
           <td><%= course.truncated_name%></td>
           <td><%=course.truncated_description%></td>
           <td><%= course.status %></td>
-          <td><%= course.students.size %></td>
+          <td><%= course.students_count %></td>
           <td>
             <% course.tags.each do |tag| %>
               <%= link_to courses_path(tag: tag.name) do %>
@@ -27,20 +27,26 @@
             <% end %>
           </td>
           <td>
-            <%= link_to 'Show', course %>
+            <% if current_instructor %>
+              <%= link_to 'Show', course %>
+            <% end%>
             <% if policy(Course).update?  %>
               <%= link_to 'Update', edit_course_path(course) %>
             <% end%>
             <% if policy(Course).destroy?  %>
               <%= link_to 'Destroy', course, method: :delete, data: { confirm: 'Are you sure?' } %>
             <% end%>
+            <% if policy(Course).enroll? %>
+              <%= link_to 'Enroll in Course', course_enrollments_path(course), method: :post, data: { confirm: 'Join course?' }%>
+            <% end %>
           </td>
         </tr>
       <% end %>
     </tbody>
   </table>
-  <% if policy(Course).create?  %>
-    <%= link_to 'New Course', new_course_path %>
-  <% end%>
-  <%= link_to 'Dashboard', root_path%>
+  <div class="pagination-container">
+    <div class="d-flex justify-content-center">
+      <%= paginate @courses.object, class: 'pagination-grey' %>
+    </div>
+  </div>
 </div>

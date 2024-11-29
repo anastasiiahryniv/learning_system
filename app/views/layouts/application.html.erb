@@ -13,7 +13,11 @@
   </head>
 
   <body>
-    <main class="container mx-auto mt-28 pt-4 px-5 flex">
+  <% if instructor_signed_in? || student_signed_in? %>
+    <%= render 'shared/navbar' %>
+  <% end %>
+
+  <main class="container mx-auto mt-28 pt-4 px-5 flex">
       <%= render 'shared/flashes' %>
 
       <%= yield %>

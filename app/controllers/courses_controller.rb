@@ -1,11 +1,12 @@
 class CoursesController < ApplicationController
-  before_action :set_course, only: %i[show edit update destroy]
+  before_action :find_course, only: %i[show edit update destroy]
+  before_action :permitted_courses, only: [:index]
   before_action :authorize_policy
 
   def index
-    @q = Course.ransack(params[:q])
-    @courses = CoursesQuery.new(relation: @q.result(distinct: true).includes(:tags),
-                                params: filter_params).call.decorate
+    query = CoursesQuery.new(relation: permitted_courses, params: filter_params,
+                             student: current_student).call
+    @courses = query.page(params[:page]).decorate
   end
 
   def show
@@ -31,10 +32,12 @@ class CoursesController < ApplicationController
   end
 
   def update
-    service = CourseUpdatingService.new(@course, course_params, flash)
+    service = CourseUpdatingService.new(@course, course_params)
     if service.call
+      flash[:notice] = I18n.t('course_update_success')
       redirect_to course_path(@course)
     else
+      flash[:notice] = I18n.t('course_update_failed')
       render :edit
     end
   end
@@ -46,7 +49,7 @@ class CoursesController < ApplicationController
 
   private
 
-  def set_course
+  def find_course
     @course = Course.find(params[:id])
   end
 
@@ -64,5 +67,10 @@ class CoursesController < ApplicationController
 
   def filter_params
     params.permit(:search, :sort_by, :tag)
+  end
+
+  def permitted_courses
+    @q = Course.ransack(params[:q])
+    @q.result(distinct: true).includes(:tags)
   end
 end

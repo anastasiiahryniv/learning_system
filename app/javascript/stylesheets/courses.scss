@@ -1,0 +1,26 @@
+.divider:after,
+.divider:before {
+  content: "";
+  flex: 1;
+  height: 1px;
+  background: #eee;
+}
+
+table tr td, table tr th{
+  background-color: transparent !important;
+}
+
+a{
+  color: black;
+}
+
+tbody td {
+  font-weight: 200;
+}
+
+.description{
+  font-style: italic;
+  font-weight: 200;
+  font-size: 15px;
+  margin: -10px 0 5px 0;
+}
