@@ -1,21 +1,4 @@
 @import "bootstrap";
-
-body {
-  background-color: #dee1e3;
-}
-
-.divider:after,
-.divider:before {
-  content: "";
-  flex: 1;
-  height: 1px;
-  background: #eee;
-}
-
-table tr td, table tr th{
-  background-color: transparent !important;
-}
-
-a{
-  color: black;
-}
+@import "navbar";
+@import "pagination";
+@import "courses";

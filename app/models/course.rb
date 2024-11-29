@@ -1,4 +1,7 @@
 class Course < ApplicationRecord
+  # Pagination
+  paginates_per 15
+
   # Constants
   MAX_COURSE_NAME_LENGTH = 100
   MAX_DESCRIPTION_LENGTH = 500
