@@ -1,5 +1,5 @@
 class EnrollmentsController < ApplicationController
-  before_action :set_course, except: :index
+  before_action :find_course, except: :index
 
   def index
     @enrollments = current_student.enrollments.includes(:course).page(params[:page])
@@ -17,7 +17,7 @@ class EnrollmentsController < ApplicationController
 
   private
 
-  def set_course
+  def find_course
     @course = Course.find(params[:course_id])
   end
 end
