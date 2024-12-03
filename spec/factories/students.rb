@@ -5,5 +5,8 @@ FactoryBot.define do
     email { Faker::Internet.email }
     password { Faker::Internet.password }
     status { :active }
+    after(:build) do |student|
+      student.avatar.attach(io: File.open(Rails.root.join('spec', 'factories', 'images', 'default_profile.png')), filename: 'default_profile.png', content_type: 'image/png')
+    end
   end
 end
