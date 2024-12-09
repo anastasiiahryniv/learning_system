@@ -20,10 +20,21 @@
         </div>
       <% end %>
       <div class="vr"></div>
-      <div class="nav-item ">
-        <% if instructor_signed_in? || student_signed_in? %>
-          <%= instructor_signed_in? ? link_to('Sing out', destroy_instructor_session_path, method: :delete, data: { turbo_method: :delete }) : link_to('Sing out', destroy_student_session_path, method: :delete, data: { turbo_method: :delete }) %>
-        <% end %>
+      <div class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#"  data-bs-toggle="dropdown" aria-expanded="false">Account</a>
+        <ul class="dropdown-menu">
+          <li>
+            <div class="dropdown-item">
+              <%= instructor_signed_in? ? link_to('Show details', instructors_path) : link_to('Show details', students_path) %>
+            </div>
+          </li>
+          <li><hr class="dropdown-divider"></li>
+          <li>
+            <div class="dropdown-item" href="#">
+              <%= instructor_signed_in? ? link_to('Sing out', destroy_instructor_session_path, method: :delete, data: { turbo_method: :delete }) : link_to('Sing out', destroy_student_session_path, method: :delete, data: { turbo_method: :delete }) %>
+            </div>
+          </li>
+        </ul>
       </div>
     </div>
   </div>

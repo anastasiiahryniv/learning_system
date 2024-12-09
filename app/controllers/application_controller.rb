@@ -6,7 +6,8 @@ class ApplicationController < ActionController::Base
   helper_method :current_student, :current_instructor
 
   def configure_permitted_parameters
-    devise_parameter_sanitizer.permit(:sign_up, keys: %i[name surname])
+    devise_parameter_sanitizer.permit(:sign_up, keys: %i[name surname avatar])
+    devise_parameter_sanitizer.permit(:account_update, keys: %i[name surname avatar])
   end
 
   private

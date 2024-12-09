@@ -1,0 +1,32 @@
+.main-body {
+  padding: 15px;
+}
+
+.card-body {
+  flex: 1 1 auto;
+  padding: 1rem;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  word-wrap: break-word;
+  background-clip: border-box;
+  border: 0 solid rgba(0,0,0,.125);
+  border-radius: .25rem;
+  min-height: 300px;
+}
+
+.gutters-sm {
+  margin-right: -8px;
+  margin-left: -8px;
+}
+
+.gutters-sm>.col, .gutters-sm>[class*=col-] {
+  padding-right: 8px;
+  padding-left: 8px;
+}
+
+.instr_img{
+  width: 200px;
+  height: 200px;
+}
