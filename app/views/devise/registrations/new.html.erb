@@ -10,7 +10,7 @@
         <%= form_for(resource, as: resource_name, url: registration_path(resource_name), class: 'd-flex') do |f| %>
           <%= render 'devise/shared/error_messages', resource: %>
           <div data-mdb-input-init class="form-outline mb-4">
-            <%= f.file_field :avatar ,
+            <%= f.file_field :avatar,
                              direct_upload: true,
                              class: 'form-control form-control-lg' %>
           </div>
