@@ -3,10 +3,10 @@ module AvatarManager
 
   included do
     has_one_attached :avatar, dependent: :destroy
-    after_commit :avatar_default, on: %i[create update]
+    after_commit :avatar_with_fallback, on: %i[create update]
   end
 
-  def avatar_default
-    '/default_profile.png' unless avatar.attached?
+  def avatar_with_fallback
+    avatar.attached? ? avatar : 'default_profile.png'
   end
 end
