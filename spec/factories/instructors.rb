@@ -6,5 +6,9 @@ FactoryBot.define do
     password { Faker::Internet.password }
     status { :active }
     role { :instructor }
+    after(:build) do |instructor|
+      instructor.avatar.attach(io: Rails.root.join('spec/factories/images/default_profile.png').open,
+                               filename: 'default_profile.png', content_type: 'image/png')
+    end
   end
 end
