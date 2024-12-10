@@ -2,8 +2,8 @@ require 'rails_helper'
 
 RSpec.describe BaseDecorator do
   describe 'decorator' do
-    let(:instructor) { create :instructor}
-    let(:student) { create :student}
+    let(:instructor) { create :instructor }
+    let(:student) { create :student }
     let(:instructor_decorator) { instructor.decorate }
     let(:student_decorator) { student.decorate }
 

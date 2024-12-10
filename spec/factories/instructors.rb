@@ -7,7 +7,8 @@ FactoryBot.define do
     status { :active }
     role { :instructor }
     after(:build) do |instructor|
-      instructor.avatar.attach(io: File.open(Rails.root.join('spec', 'factories', 'images', 'default_profile.png')), filename: 'default_profile.png', content_type: 'image/png')
+      instructor.avatar.attach(io: Rails.root.join('spec/factories/images/default_profile.png').open,
+                               filename: 'default_profile.png', content_type: 'image/png')
     end
   end
 end
