@@ -38,4 +38,8 @@ class CoursePolicy < ApplicationPolicy
   def enroll?
     user.is_a?(Student)
   end
+
+  def student_list?
+    user.is_a?(Instructor)
+  end
 end

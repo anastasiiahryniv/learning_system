@@ -42,6 +42,7 @@ gem 'bootsnap', '>= 1.4.4', require: false
 gem 'draper', '~> 4.0'
 gem 'kaminari', '~> 1.2'
 gem 'image_processing', '>= 1.2'
+gem 'database_cleaner-active_record', '2.0.0'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
@@ -53,7 +54,7 @@ group :development, :test do
   gem 'letter_opener'
   gem 'rspec-rails', '~> 5.1'
   gem 'shoulda-matchers', '~> 6.2.0'
-  gem 'rails-controller-testing', '~> 0.0.3'
+  gem 'rails-controller-testing'
 end
 
 group :development do
