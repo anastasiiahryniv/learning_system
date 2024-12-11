@@ -6,8 +6,14 @@ Rails.application.routes.draw do
   devise_for :instructors
   devise_for :students
 
-  resources :instructors, only: %i[index edit], path: 'instructor'
-  resources :students, only: %i[index edit], path: 'student'
+  namespace :instructors do
+    resource :profiles, only: %i[show edit update]
+  end
+
+  namespace :students do
+    resource :profiles, only: %i[show edit update]
+  end
+
 
   authenticate :instructors do
     mount Sidekiq::Web => '/sidekiq'

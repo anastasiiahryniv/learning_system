@@ -1,6 +1,6 @@
 class Student < ApplicationRecord
   include Authenticatable
-  include AvatarManager
+  include Avatarable
 
   # Associations
   has_many :enrollments, dependent: :destroy

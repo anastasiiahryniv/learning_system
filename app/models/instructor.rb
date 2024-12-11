@@ -1,6 +1,6 @@
 class Instructor < ApplicationRecord
   include Authenticatable
-  include AvatarManager
+  include Avatarable
 
   # Associations
   has_many :courses, dependent: :destroy

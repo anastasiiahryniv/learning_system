@@ -1,4 +1,4 @@
-module AvatarManager
+module Avatarable
   extend ActiveSupport::Concern
 
   included do
