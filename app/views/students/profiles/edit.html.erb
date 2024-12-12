@@ -1,0 +1,35 @@
+<div class="col-md-7 col-lg-5 col-xl-5 offset-xl-1">
+  <h3>Update your information</h3>
+
+  <%= form_with(model: @student, url: students_profiles_path, local: true) do |form| %>
+    <div data-mdb-input-init class="form-floating  mt-3 mb-2">
+
+      <%= form.text_field :name,
+                          autofocus: true,
+                          placeholder: 'Name',
+                          class: 'form-control',
+                          id: 'floatingInput'%>
+      <label for="floatingInput">Name</label>
+    </div>
+
+    <div data-mdb-input-init class="form-floating mb-2">
+      <%= form.text_field :surname,
+                          autofocus: true,
+                          placeholder: 'Surname',
+                          class: 'form-control',
+                          id: 'floatingSurName'
+      %>
+      <label for="floatingSurName">Surname</label>
+    </div>
+
+    <div data-mdb-input-init class="form-outline mb-4">
+      <%= form.file_field :avatar,
+                       direct_upload: true,
+                       class: 'form-control form-control-lg' %>
+    </div>
+
+    <div class="actions">
+      <%= form.submit 'Update', class: 'btn btn-secondary btn-block'%>
+    </div>
+  <% end %>
+</div>

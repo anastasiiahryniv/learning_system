@@ -10,12 +10,21 @@ module Instructors
     end
 
     def update
+      if @instructor.update(instructor_params)
+        redirect_to instructors_profiles_path, notice: 'Profile was successfully updated.'
+      else
+        render :edit
+      end
     end
 
     private
 
     def set_current_instructor
       @instructor = Instructor.find_by(id: current_instructor.id)
+    end
+
+    def instructor_params
+      params.require(:instructor).permit(:name, :surname, :avatar)
     end
   end
 end
