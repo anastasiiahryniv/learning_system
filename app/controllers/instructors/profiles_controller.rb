@@ -13,6 +13,7 @@ module Instructors
       if @instructor.update(instructor_params)
         redirect_to instructors_profiles_path, notice: 'Profile was successfully updated.'
       else
+        flash[:alert] = @instructor.errors.full_messages.join(', ')
         render :edit
       end
     end

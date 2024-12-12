@@ -14,6 +14,7 @@ module Students
       if @student.update(student_params)
         redirect_to students_profiles_path, notice: 'Profile was successfully updated.'
       else
+        flash[:alert] = @student.errors.full_messages.join(', ')
         render :edit
       end
     end
