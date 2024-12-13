@@ -11,12 +11,23 @@ module Students
     end
 
     def update
+      if @student.update(student_params)
+        flash[:notice] = I18n.t('profile_update_success')
+        redirect_to students_profiles_path
+      else
+        flash[:alert] = @student.errors.full_messages.join(', ')
+        render :edit
+      end
     end
 
     private
 
     def set_current_student
       @student = Student.find_by(id: current_student.id)
+    end
+
+    def student_params
+      params.require(:student).permit(:name, :surname, :avatar)
     end
   end
 end
