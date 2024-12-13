@@ -5,7 +5,7 @@ RSpec.describe CoursesQuery do
   let(:instructor) { create(:instructor) }
   let(:course1) { create(:course, name: 'B Course', tags: [tag]) }
   let(:course2) { create(:course, name: 'A Course') }
-  let(:enrollment) { create(:enrollment, student: student, course: course1) }
+  let(:enrollment) { create(:enrollment, student:, course: course1) }
   let(:tag) { create :tag, name: 'Ruby' }
 
   describe 'sorting' do
@@ -28,7 +28,7 @@ RSpec.describe CoursesQuery do
     end
 
     it 'excludes courses the student is enrolled in' do
-      query = CoursesQuery.new(relation: Course.all, params: {}, student: student)
+      query = CoursesQuery.new(relation: Course.all, params: {}, student:)
       result = query.call
       expect(result).to eq([course2])
     end

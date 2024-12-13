@@ -11,7 +11,8 @@ module Instructors
 
     def update
       if @instructor.update(instructor_params)
-        redirect_to instructors_profiles_path, notice: 'Profile was successfully updated.'
+        flash[:notice] = I18n.t('profile_update_success')
+        redirect_to instructors_profiles_path
       else
         flash[:alert] = @instructor.errors.full_messages.join(', ')
         render :edit

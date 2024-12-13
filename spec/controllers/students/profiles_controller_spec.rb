@@ -3,7 +3,7 @@ require 'rails_helper'
 RSpec.describe Students::ProfilesController, type: :controller do
   let(:student) { create(:student) }
   let(:course) { create(:course) }
-  let(:enrollment) { create(:enrollment, student: student, course: course) }
+  let(:enrollment) { create(:enrollment, student:, course:) }
 
   before { sign_in student }
 

@@ -4,7 +4,7 @@ RSpec.describe EnrollmentsController, type: :controller do
   let(:student) { create(:student) }
   let(:instructor) { create(:instructor) }
   let(:course) { create(:course) }
-  let(:enrollment) { create(:enrollment, student: student, course: course) }
+  let(:enrollment) { create(:enrollment, student:, course:) }
 
   before { sign_in student }
 
@@ -18,17 +18,17 @@ RSpec.describe EnrollmentsController, type: :controller do
 
   describe '#create' do
     it 'creates a new enrollment if the student is not already enrolled' do
-      expect {
+      expect do
         post :create, params: { course_id: course.id }
-      }.to change(Enrollment, :count).by(1)
+      end.to change(Enrollment, :count).by(1)
       expect(flash[:notice]).to eq(I18n.t('course_is_successfully_enrolled'))
     end
 
     it 'does not create a new enrollment if the student is already enrolled' do
-      create(:enrollment, student: student, course: course)
-      expect {
+      create(:enrollment, student:, course:)
+      expect do
         post :create, params: { course_id: course.id }
-      }.not_to change(Enrollment, :count)
+      end.not_to change(Enrollment, :count)
       expect(flash[:alert]).to eq(I18n.t('course_is_already_enrolled'))
     end
 

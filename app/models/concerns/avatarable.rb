@@ -6,8 +6,9 @@ module Avatarable
 
     validates :avatar,
               attached: true,
-              content_type: { in: ['image/png', 'image/jpg', 'image/jpeg'], message: 'must be a PNG, JPG, or JPEG' },
-              size: { between: 1.kilobyte..5.megabytes, message: 'must be between 1 KB and 5 MB' }
+              content_type: { in: ['image/png', 'image/jpg', 'image/jpeg'],
+                              message: I18n.t('avatar_type_validation_message') },
+              size: { between: (1.kilobyte)..(5.megabytes), message: I18n.t('avatar_size_validation_message') }
 
     after_commit :avatar_with_fallback, on: %i[create update]
   end
