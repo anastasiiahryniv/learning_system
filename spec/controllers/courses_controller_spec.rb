@@ -26,14 +26,6 @@ RSpec.describe CoursesController, type: :controller do
       expect(assigns(:courses)).to include(course)
     end
 
-    # it 'sorts courses by name by default' do
-    #   create(:course, name: 'Beta')
-    #   create(:course, name: 'Alpha')
-    #
-    #   get :index
-    #   expect(assigns(:courses).map(&:name)).to eq(['Alpha', 'Beta'])
-    # end
-
     it 'filters courses based on tag params' do
       tag = create(:tag)
       course.tags << tag
