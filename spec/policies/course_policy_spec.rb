@@ -14,6 +14,9 @@ RSpec.describe CoursePolicy do
     it { is_expected.not_to permit_action(:new) }
     it { is_expected.not_to permit_action(:update) }
     it { is_expected.to permit_action(:destroy) }
+    it { is_expected.not_to permit_action(:enroll) }
+    it { is_expected.to permit_action(:student_list) }
+    it { is_expected.to permit_action(:start) }
   end
 
   context 'for instructor (non admin)' do
@@ -25,6 +28,9 @@ RSpec.describe CoursePolicy do
     it { is_expected.to permit_action(:new) }
     it { is_expected.to permit_action(:update) }
     it { is_expected.not_to permit_action(:destroy) }
+    it { is_expected.not_to permit_action(:enroll) }
+    it { is_expected.to permit_action(:student_list) }
+    it { is_expected.to permit_action(:start) }
   end
 
   context 'for student' do
@@ -36,5 +42,8 @@ RSpec.describe CoursePolicy do
     it { is_expected.not_to permit_action(:new) }
     it { is_expected.not_to permit_action(:update) }
     it { is_expected.not_to permit_action(:destroy) }
+    it { is_expected.to permit_action(:enroll) }
+    it { is_expected.not_to permit_action(:student_list) }
+    it { is_expected.not_to permit_action(:start) }
   end
 end
