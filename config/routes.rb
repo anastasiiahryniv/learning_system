@@ -20,6 +20,10 @@ Rails.application.routes.draw do
   end
 
   resources :courses do
+    member do
+      patch :start
+    end
+
     resources :enrollments, only: [:create]
   end
 

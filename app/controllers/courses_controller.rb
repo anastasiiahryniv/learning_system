@@ -1,5 +1,5 @@
 class CoursesController < ApplicationController
-  before_action :find_course, only: %i[show edit update destroy]
+  before_action :find_course, only: %i[show edit update destroy start]
   before_action :permitted_courses, only: [:index]
   before_action :authorize_policy
 
@@ -45,6 +45,16 @@ class CoursesController < ApplicationController
   def destroy
     @course.destroy
     redirect_to courses_path
+  end
+
+  def start
+    service = CourseStartingService.new(@course)
+    if service.call
+      flash[:notice] = I18n.t('course_is_successfully_started')
+    else
+      flash[:alert] = I18n.t('course_students_size')
+    end
+    redirect_to @course
   end
 
   private

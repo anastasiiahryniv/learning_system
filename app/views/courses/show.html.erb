@@ -12,6 +12,13 @@
     <span class="badge rounded-pill bg-light text-dark"><%= tag.name %></span>
   <% end %>
 </div>
+<div class="mt-3">
+  <% if policy(Course).start?%>
+    <% if @course.inactive? %>
+      <%= link_to 'Start Course', start_course_path(@course), method: :patch %>
+    <% end %>
+  <% end %>
+</div>
 
 <% if  policy(Course).student_list? %>
   <div class="table-responsive mt-5">
