@@ -14,44 +14,49 @@
                              direct_upload: true,
                              class: 'form-control form-control-lg' %>
           </div>
-          <div data-mdb-input-init class="form-outline mb-4">
+          <div data-mdb-input-init class="form-floating mb-4">
             <%= f.text_field :name,
                              autofocus: true,
-                             autocomplete: 'name',
                              placeholder: 'first name',
-                             class: 'form-control form-control-lg' %>
+                             class: 'form-control form-control-lg',
+                             id: 'floatingName'%>
+            <label for="floatingEmail">first name</label>
           </div>
 
-          <div data-mdb-input-init class="form-outline mb-4">
+          <div data-mdb-input-init class="form-floating mb-4">
             <%= f.text_field :surname,
                              autofocus: true,
                              placeholder: 'last name',
-                             autocomplete: 'surname',
-                             class: 'form-control form-control-lg' %>
+                             class: 'form-control form-control-lg',
+                             id: 'floatingSurname'%>
+            <label for="floatingEmail">last name</label>
           </div>
 
-          <div data-mdb-input-init class="form-outline mb-4">
+          <div data-mdb-input-init class="form-floating mb-4">
             <%= f.email_field :email,
                               autofocus: true,
                               placeholder: 'email',
-                              autocomplete: 'email',
-                              class: 'form-control form-control-lg' %>
+                              class: 'form-control form-control-lg',
+                              id: 'floatingEmail'%>
+            <label for="floatingEmail">email</label>
           </div>
 
-          <div data-mdb-input-init class="form-outline mb-4">
+          <div data-mdb-input-init class="form-floating mb-4">
             <%= f.password_field :password,
-                                 autocomplete: 'new-password',
                                  placeholder: 'password (6 characters minimum)',
-                                 class: 'form-control form-control-lg' %>
+                                 class: 'form-control form-control-lg',
+                                 id: 'floatingPassword'%>
+            <label for="floatingPassword">password (6 characters minimum)</label>
           </div>
 
 
-          <div data-mdb-input-init class="form-outline mb-4">
+          <div data-mdb-input-init class="form-floating mb-4">
             <%= f.password_field :password_confirmation,
                                  autofocus: true,
                                  placeholder: 'password confirmation',
-                                 autocomplete: 'password_confirmation',
-                                 class: 'form-control form-control-lg' %>
+                                 class: 'form-control form-control-lg',
+                                 id: 'floatingPasswordConfirmation'%>
+            <label for="floatingPasswordConfirmation">password confirmation</label>
           </div>
 
           <div class="actions">
