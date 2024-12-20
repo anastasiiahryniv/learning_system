@@ -36,11 +36,10 @@ class Course < ApplicationRecord
   aasm column: 'status', enum: true do
     state :inactive, initial: true
     state :active
-    state :pending
     state :finished
 
-    event :started do
-      transitions from: :inactive, to: :active, guard: :students_enrolled?
+    event :start do
+      transitions from: :inactive, to: :active, guard: :has_students?
     end
 
     event :finish do
@@ -48,8 +47,8 @@ class Course < ApplicationRecord
     end
   end
 
-  def students_enrolled?
-    students.count.positive?
+  def has_students?
+    students_count > 0
   end
 
   private
