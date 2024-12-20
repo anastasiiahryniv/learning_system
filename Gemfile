@@ -44,6 +44,7 @@ gem 'kaminari', '~> 1.2'
 gem 'image_processing', '>= 1.2'
 gem 'database_cleaner-active_record', '2.0.0'
 gem 'active_storage_validations'
+gem 'aasm'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console

@@ -42,4 +42,8 @@ class CoursePolicy < ApplicationPolicy
   def student_list?
     user.is_a?(Instructor)
   end
+
+  def start?
+    user.is_a?(Instructor)
+  end
 end

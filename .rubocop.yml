@@ -47,3 +47,11 @@ Lint/DuplicateBranch:
 
 Metrics/MethodLength:
   Enabled: false
+
+Naming/PredicateName:
+  Exclude:
+    - 'app/models/course.rb'
+
+Style/NumericPredicate:
+  Exclude:
+    - 'app/models/course.rb'

@@ -1,4 +1,6 @@
 class Course < ApplicationRecord
+  include AASM
+
   # Pagination
   paginates_per 15
 
@@ -19,7 +21,7 @@ class Course < ApplicationRecord
   validates :description, length: { maximum: MAX_DESCRIPTION_LENGTH }
 
   # Enrollments
-  enum status: { draft: 10, active: 20, inactive: 30 }
+  enum status: { inactive: 10, active: 20, finished: 30 }
 
   after_create :set_status
 
@@ -29,6 +31,24 @@ class Course < ApplicationRecord
 
   def self.ransackable_associations(auth_object = nil)
     %w[enrollments instructor students]
+  end
+
+  aasm column: 'status', enum: true do
+    state :inactive, initial: true
+    state :active
+    state :finished
+
+    event :start do
+      transitions from: :inactive, to: :active, guard: :has_students?
+    end
+
+    event :finish do
+      transitions from: :active, to: :finished
+    end
+  end
+
+  def has_students?
+    students_count > 0
   end
 
   private

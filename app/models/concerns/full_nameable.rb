@@ -4,6 +4,6 @@ module FullNameable
   NAME_SEPARATOR = ' '.freeze
 
   def full_name
-    [object.name, object.surname].compact.join(NAME_SEPARATOR)
+    [name, surname].compact.join(NAME_SEPARATOR)
   end
 end
