@@ -16,6 +16,8 @@ class Course < ApplicationRecord
   has_many :taggables, dependent: :destroy
   has_many :tags, through: :taggables
 
+  has_rich_text :description
+
   # Validations
   validates :name, presence: true, length: { maximum: MAX_COURSE_NAME_LENGTH }
   validates :description, length: { maximum: MAX_DESCRIPTION_LENGTH }

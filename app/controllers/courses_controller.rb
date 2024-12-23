@@ -76,11 +76,11 @@ class CoursesController < ApplicationController
   end
 
   def filter_params
-    params.permit(:search, :sort_by, :tag)
+    params.permit(:search, :sort_by, :tag, :page)
   end
 
   def permitted_courses
     @q = Course.ransack(params[:q])
-    @q.result(distinct: true).includes(:tags)
+    @q.result(distinct: true).includes(:tags, :rich_text_description)
   end
 end
