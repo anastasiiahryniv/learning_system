@@ -14,7 +14,7 @@ class CourseStartingService
 
   def send_notification_to_students
     @course.students.each do |student|
-      Students::StudentsMailer.course_start(@course, student).deliver_now
+      Students::Mailer.course_start(@course, student).deliver_now
     end
   end
 end
