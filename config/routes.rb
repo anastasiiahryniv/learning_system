@@ -24,6 +24,7 @@ Rails.application.routes.draw do
       patch :start
     end
 
+    resources :comments
     resources :enrollments, only: [:create]
   end
 
