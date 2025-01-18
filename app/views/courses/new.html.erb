@@ -9,13 +9,12 @@
                           class: 'form-control' %>
     </div>
     <div data-mdb-input-init class="form-outline mb-2">
-      <%= form.text_field :description,
-                          autofocus: true,
-                          autocomplete: 'description',
-                          placeholder: 'course description',
-                          class: 'form-control' %>
+      <%= form.rich_text_area :description,
+                              autofocus: true,
+                              autocomplete: 'description',
+                              placeholder: 'course description',
+                              class: 'form-control' %>
     </div>
-
     <div data-mdb-input-init class="form-outline mb-3">
       <%= form.select :tags,
                       options_for_select([%w[Music music],

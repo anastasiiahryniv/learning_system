@@ -22,7 +22,6 @@ RSpec.describe Course, type: :model do
       it { is_expected.to be_valid }
       it { is_expected.to validate_presence_of(:name) }
       it { is_expected.to validate_length_of(:name).is_at_most(Course::MAX_COURSE_NAME_LENGTH) }
-      it { is_expected.to validate_length_of(:description).is_at_most(Course::MAX_DESCRIPTION_LENGTH) }
     end
   end
 end

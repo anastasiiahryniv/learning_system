@@ -11,7 +11,7 @@ RSpec.describe CourseStartingService, type: :model do
       allow(course).to receive(:students).and_return([student])
 
       expect(course).to receive(:start)
-      expect(Mailers::StartCourseMailer).to receive(:course_start).with(course, student).and_call_original
+      expect(Students::Mailer).to receive(:course_start).with(course, student).and_call_original
 
       service.call
     end
@@ -20,7 +20,7 @@ RSpec.describe CourseStartingService, type: :model do
       allow(course).to receive(:may_start?).and_return(false)
 
       expect(course).not_to receive(:start)
-      expect(Mailers::StartCourseMailer).not_to receive(:course_start)
+      expect(Students::Mailer).not_to receive(:course_start)
 
       service.call
     end
@@ -30,7 +30,7 @@ RSpec.describe CourseStartingService, type: :model do
       allow(course).to receive(:has_students?).and_return(false)
 
       expect(course).not_to receive(:start)
-      expect(Mailers::StartCourseMailer).not_to receive(:course_start)
+      expect(Students::Mailer).not_to receive(:course_start)
 
       service.call
     end
@@ -42,7 +42,7 @@ RSpec.describe CourseStartingService, type: :model do
 
       expect(course).to receive(:start)
       students.each do |student|
-        expect(Mailers::StartCourseMailer).to receive(:course_start).with(course, student).and_call_original
+        expect(Students::Mailer).to receive(:course_start).with(course, student).and_call_original
       end
 
       service.call

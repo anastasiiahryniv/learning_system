@@ -6,6 +6,6 @@ class CourseDecorator < Draper::Decorator
   end
 
   def truncated_description
-    object.description.truncate(40).to_s
+    object.description.to_plain_text.truncate(40)
   end
 end

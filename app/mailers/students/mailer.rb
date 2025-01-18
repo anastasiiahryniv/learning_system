@@ -1,5 +1,5 @@
-module Mailers
-  class StartCourseMailer < ApplicationMailer
+module Students
+  class Mailer < ApplicationMailer
     def course_start(course, student)
       @course = course
       @student = student
