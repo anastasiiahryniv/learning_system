@@ -1,0 +1,36 @@
+<div class="comment-<%= comment.id %> container comment-table position-relative">
+  <div class=" d-flex justify-content-start">
+    <div class="comment-info">
+      <% if comment.student %>
+        <%= comment.student.full_name %><br />
+      <% elsif comment.instructor %>
+        <%= comment.instructor.full_name %><br />
+      <% end %>
+    </div>
+    <div class="comment-time">
+      <span> - Posted <%= time_ago_in_words(comment.created_at) %> ago</span>
+    </div>
+  </div>
+
+  <div class=" position-absolute top-0 end-0 button-group mt-3">
+    <% if comment.student == current_student || comment.instructor == current_instructor %>
+      <%= link_to "Edit", nil, remote: true,
+                  data: {
+                    controller: "comments",
+                    action: "comments#toggleForm",
+                    comments_form_param: "edit-form-#{comment.id}",
+                    comments_body_param: "comment-body-#{comment.id}",
+                  } %>
+
+      <%= link_to 'Delete', [course, comment], method: :delete, data: { confirm: 'Are you sure?' }%>
+    <%end %>
+  </div>
+
+  <div id="edit-form-<%= comment.id %>" class="d-none">
+    <%= render 'comments/form' , course: @course, comment: comment, submit_label: "Update" %>
+  </div>
+  <hr />
+  <div id="comment-body-<%= comment.id %>">
+    <%= comment.body %>
+  </div>
+</div>

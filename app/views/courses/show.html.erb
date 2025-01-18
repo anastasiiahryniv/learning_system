@@ -44,9 +44,6 @@
         <% end %>
       </tbody>
       </table>
-    <div class="container">
-      <%= render 'comments/form', post: @course %>
-    </div>
   </div>
 <%end %>
 
@@ -55,4 +52,14 @@
     <%= link_to 'Edit', edit_course_path(@course) %> |
   <% end%>
   <%= link_to 'Back', courses_path %>
+</div>
+
+<hr />
+<div class="container">
+  <h3>Forum</h3>
+  <% @comments.each do |comment| %>
+    <%= render 'comments/comment', course: @course, comment: comment %>
+  <% end %>
+
+  <%= render 'comments/form', course: @course , comment: @course.comments.build, submit_label: "Reply"%>
 </div>

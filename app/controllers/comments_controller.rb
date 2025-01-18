@@ -2,13 +2,27 @@ class CommentsController < ApplicationController
   before_action :set_course
 
   def create
-    @comment = @course.comments.create(comment_params)
-    # @comment.user = current_user
+    @comment = @course.comments.new(comment_params)
+
+    @comment.student = current_student if current_student
+    @comment.instructor = current_instructor if current_instructor
+
     if @comment.save
       redirect_to course_path(@course)
     else
-      flash[:alert] = 'Comments has not been created'
+      flash[:alert] = 'Comment has not been created'
       redirect_to course_path(@course)
+    end
+  end
+
+  def update
+    @comment = @course.comments.find(params[:id])
+    respond_to do |format|
+      if @comment.update(comment_params)
+        format.html { redirect_to course_path(@course), notice: 'Comment was updated.' }
+      else
+        format.html { redirect_to course_path(@course), notice: 'Comment was not updated.' }
+      end
     end
   end
 
@@ -26,5 +40,4 @@ class CommentsController < ApplicationController
   def comment_params
     params.require(:comment).permit(:body)
   end
-
 end
