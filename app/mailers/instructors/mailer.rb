@@ -1,5 +1,5 @@
 module Instructors
-  class InstructorsMailer < ApplicationMailer
+  class Mailer < ApplicationMailer
     def new_course_created(instructor, course)
       @course = course
       mail(
