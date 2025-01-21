@@ -1,9 +1,13 @@
 .comment-table{
-  border-top: 1px solid black;
-  padding: 1em;
-  margin: 1em;
+  border: 1px solid black;
+  padding: 20px;
+  margin-bottom: 1em;
 }
 
 .comment-time{
   margin-left:10px;
+}
+
+.button-inline{
+  right: 50px;
 }

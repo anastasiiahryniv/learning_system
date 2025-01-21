@@ -1,36 +1,59 @@
-<div class="comment-<%= comment.id %> container comment-table position-relative">
-  <div class=" d-flex justify-content-start">
-    <div class="comment-info">
-      <% if comment.student %>
-        <%= comment.student.full_name %><br />
-      <% elsif comment.instructor %>
-        <%= comment.instructor.full_name %><br />
-      <% end %>
+<div class="comment-field">
+  <div class="comment-<%= comment.id %> container comment-table position-relative">
+    <div class="d-flex justify-content-start">
+      <div class="comment-info">
+        <%= comment.authorable&.full_name %>
+      </div>
+      <div class="comment-time">
+        <span> - Posted <%= time_ago_in_words(comment.created_at) %> ago</span>
+      </div>
     </div>
-    <div class="comment-time">
-      <span> - Posted <%= time_ago_in_words(comment.created_at) %> ago</span>
-    </div>
-  </div>
 
-  <div class=" position-absolute top-0 end-0 button-group mt-3">
-    <% if comment.student == current_student || comment.instructor == current_instructor %>
-      <%= link_to "Edit", nil, remote: true,
-                  data: {
-                    controller: "comments",
-                    action: "comments#toggleForm",
-                    comments_form_param: "edit-form-#{comment.id}",
-                    comments_body_param: "comment-body-#{comment.id}",
+    <div class="position-absolute top-0 button-inline button-group mt-3">
+      <% if policy(comment).update?%>
+        <%= link_to 'Edit', nil, remote: true,
+                                 data: {
+                      controller: 'comments',
+                      action: 'comments#toggleEditForm',
+                      comments_form_param: "edit-form-#{comment.id}",
+                      comments_body_param: "comment-body-#{comment.id}"
+                    } %>
+      <% end %>
+
+      <%= link_to 'Reply', nil, remote: true,
+                                data: {
+                    controller: 'comments',
+                    action: 'comments#toggleReplyForm',
+                    comments_form_param: "reply-form-#{comment.id}"
                   } %>
 
-      <%= link_to 'Delete', [course, comment], method: :delete, data: { confirm: 'Are you sure?' }%>
-    <%end %>
-  </div>
+      <% if policy(comment).destroy?%>
+        <%= link_to 'Delete', course_comment_path(@course, comment), method: :delete, data: { confirm: 'Are you sure?' } %>
+      <% end %>
+    </div>
 
-  <div id="edit-form-<%= comment.id %>" class="d-none">
-    <%= render 'comments/form' , course: @course, comment: comment, submit_label: "Update" %>
-  </div>
-  <hr />
-  <div id="comment-body-<%= comment.id %>">
-    <%= comment.body %>
+    <div id="edit-form-<%= comment.id %>" class="d-none">
+      <%= render 'comments/form', course: @course, comment:, submit_label: 'Update' %>
+    </div>
+
+    <div class="comment">
+      <div id="comment-body-<%= comment.id %>">
+        <%= comment.body %>
+      </div>
+
+      <!-- Reply Form -->
+      <div id="reply-form-<%= comment.id %>" class="d-none">
+        <%= render partial: 'comments/form_reply', locals: { commentable: comment.commentable, parent_id: comment.id } %>
+      </div>
+
+      <div >
+      <!-- Render Replies -->
+        <% comment.replies.each do |reply| %>
+          <div class="reply">
+            <%= render partial: 'comments/comment', locals: { comment: reply } %>
+          </div>
+        <% end %>
+      </div>
+    </div>
   </div>
 </div>

@@ -6,5 +6,5 @@ class Student < ApplicationRecord
   # Associations
   has_many :enrollments, dependent: :destroy
   has_many :courses, through: :enrollments
-  has_many :comments, dependent: :destroy
+  has_many :comments, as: :authorable, dependent: :destroy
 end

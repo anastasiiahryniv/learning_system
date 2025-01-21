@@ -16,5 +16,11 @@ module Instructors
         subject: course.name
       )
     end
+
+    def course_comment(comment, instructor)
+      @comment = comment
+      @instructor = instructor
+      mail(to: instructor.email, subject: I18n.t('new_comment_added'))
+    end
   end
 end

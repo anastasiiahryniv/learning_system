@@ -1,6 +1,9 @@
 <%= form_with(model: [course, comment]) do |f| %>
   <div class = "form-control">
-    <%= f.rich_text_area :body %>
-    <%= f.submit submit_label, class: "btn btn-primary mt-1" %>
+    <%= f.rich_text_area :body, placeholder: 'Write your comment here...' %>
+    <%= f.hidden_field :authorable_type, value: current_student ? 'Student' : 'Instructor' %>
+    <%= f.hidden_field :authorable_id, value: current_student&.id || current_instructor&.id %>
+
+    <%= f.submit 'Submit', class: 'btn btn-secondary mt-1' %>
   </div>
 <% end %>

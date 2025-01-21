@@ -1,0 +1,12 @@
+<%= form_with(model: [commentable, @course.comments.new], local: true) do |form| %>
+  <%= form.hidden_field :commentable_type, value: commentable.class.name %>
+  <%= form.hidden_field :commentable_id, value: commentable.id %>
+  <%= form.hidden_field :parent_id, value: parent_id %>
+  <%= form.hidden_field :authorable_type, value: current_student ? 'Student' : 'Instructor' %>
+  <%= form.hidden_field :authorable_id, value: current_student&.id || current_instructor&.id %>
+
+  <div class="form-group">
+    <%= form.rich_text_area :body, placeholder: 'Write your comment here...' %>
+  </div>
+  <%= form.submit 'Submit', class: 'btn btn-secondary mt-1' %>
+<% end %>

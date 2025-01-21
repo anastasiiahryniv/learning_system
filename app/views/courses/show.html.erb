@@ -55,11 +55,12 @@
 </div>
 
 <hr />
-<div class="container">
-  <h3>Forum</h3>
-  <% @comments.each do |comment| %>
-    <%= render 'comments/comment', course: @course, comment: comment %>
-  <% end %>
+<h3>Forum</h3>
 
-  <%= render 'comments/form', course: @course , comment: @course.comments.build, submit_label: "Reply"%>
+<div class="comments">
+  <% @course.comments.where(parent_id: nil).find_each do |comment| %>
+    <%= render partial: 'comments/comment', locals: { comment:, course: @course } %>
+  <% end %>
 </div>
+
+<%= render 'comments/form', course: @course, comment: @course.comments.build, parent_id: nil  %>
