@@ -48,6 +48,10 @@ en:
   profile_update_success: "Profile was successfully updated."
   avatar_type_validation_message: "must be a PNG, JPG, or JPEG"
   avatar_size_validation_message: "must be between 1 KB and 5 MB"
+  comment_is_successfully_added: "Comment has not been created"
+  comment_is_successfully_updated: "Comment was updated."
+  comment_update_failed: "Comment was not updated."
+  new_comment_added: "New comment added'"
   views:
     pagination:
       first: "First"
