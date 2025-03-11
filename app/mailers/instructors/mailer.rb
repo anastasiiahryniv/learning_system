@@ -8,7 +8,7 @@ module Instructors
       )
     end
 
-    def new_students_enrollment(instructor, course, student)
+    def new_student_enrollment(instructor, course, student)
       @course = course
       @student = student
       mail(

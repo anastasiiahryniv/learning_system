@@ -1,6 +1,6 @@
 class Comment < ApplicationRecord
   belongs_to :course
-  belongs_to :authorable, polymorphic: true
+  belongs_to :author, polymorphic: true
 
   belongs_to :commentable, polymorphic: true
   has_many :comments, as: :commentable, dependent: :destroy

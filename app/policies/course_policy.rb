@@ -1,11 +1,11 @@
 class CoursePolicy < ApplicationPolicy
   class Scope < Scope
     def resolve
-      if user.is_a?(Instructor) && user.instructor_admin?
+      if admin_instructor?
         scope.all
-      elsif user.is_a?(Instructor) && user.instructor?
+      elsif instructor?
         scope.where(instructor_id: user.id)
-      elsif user.is_a?(Student)
+      elsif student?
         scope.active
       end
     end

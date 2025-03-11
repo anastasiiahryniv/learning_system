@@ -2,7 +2,7 @@
   <div class="comment-<%= comment.id %> container comment-table position-relative">
     <div class="d-flex justify-content-start">
       <div class="comment-info">
-        <%= comment.authorable&.full_name %>
+        <%= comment.author&.full_name %>
       </div>
       <div class="comment-time">
         <span> - Posted <%= time_ago_in_words(comment.created_at) %> ago</span>

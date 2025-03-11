@@ -1,10 +1,10 @@
 class CommentPolicy < ApplicationPolicy
   class Scope < Scope
     def resolve
-      if user.is_a?(Instructor) && user.instructor_admin?
+      if admin_instructor?
         scope.all
-      elsif user.is_a?(Student) || (user.is_a?(Instructor) && !user.instructor_admin?)
-        scope.where(authorable: user)
+      elsif instructor? || student?
+        scope.where(author: user)
       else
         scope.none
       end
@@ -12,7 +12,7 @@ class CommentPolicy < ApplicationPolicy
   end
 
   def update?
-    user == record.authorable || (user.is_a?(Instructor) && user.instructor_admin?)
+    user == record.author || (user.is_a?(Instructor) && user.instructor_admin?)
   end
 
   def destroy?
