@@ -24,8 +24,8 @@ class CommentCreationService
   private
 
   def send_mail(comment, instructor_id)
-    if @user.is_a?(Student)
-      Instructors::Mailer.course_comment(comment, instructor_id).deliver_now
-    end
+    return unless @user.is_a?(Student)
+
+    Instructors::Mailer.course_comment(comment, instructor_id).deliver_now
   end
 end

@@ -2,7 +2,6 @@ class Instructor < ApplicationRecord
   include Authenticatable
   include Avatarable
   include FullNameable
-  include UserRoles
 
   # Associations
   has_many :courses, dependent: :destroy

@@ -1,4 +1,5 @@
 class CommentPolicy < ApplicationPolicy
+  include UserRoles
   class Scope < Scope
     def resolve
       if admin_instructor?
