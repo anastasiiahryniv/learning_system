@@ -10,6 +10,7 @@ class CoursesController < ApplicationController
   end
 
   def show
+    @comments = @course.comments.order(created_at: :desc)
   end
 
   def new

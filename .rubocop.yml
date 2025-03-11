@@ -19,6 +19,9 @@ Style/Documentation:
 Style/ClassAndModuleChildren:
   Enabled: false
 
+Rails/InverseOf:
+  Enabled: false
+
 Rails/Output:
   Enabled: false
 

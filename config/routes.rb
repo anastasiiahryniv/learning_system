@@ -24,8 +24,13 @@ Rails.application.routes.draw do
       patch :start
     end
 
+    resources :comments do
+      resources :replies, controller: 'comments'
+    end
+
     resources :enrollments, only: [:create]
   end
+
 
   resources :enrollments, only: [:index]
 

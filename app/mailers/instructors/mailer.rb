@@ -8,13 +8,19 @@ module Instructors
       )
     end
 
-    def new_students_enrollment(instructor, course, student)
+    def new_student_enrollment(instructor, course, student)
       @course = course
       @student = student
       mail(
         to: instructor.email,
         subject: course.name
       )
+    end
+
+    def course_comment(comment, instructor)
+      @comment = comment
+      @instructor = instructor
+      mail(to: instructor.email, subject: I18n.t('new_comment_added'))
     end
   end
 end

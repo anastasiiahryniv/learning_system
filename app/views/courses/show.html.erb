@@ -53,3 +53,14 @@
   <% end%>
   <%= link_to 'Back', courses_path %>
 </div>
+
+<hr />
+<h3>Forum</h3>
+
+<div class="comments">
+  <% @course.comments.where(parent_id: nil).find_each do |comment| %>
+    <%= render partial: 'comments/comment', locals: { comment:, course: @course } %>
+  <% end %>
+</div>
+
+<%= render 'comments/form', course: @course, comment: @course.comments.build, parent_id: nil  %>
