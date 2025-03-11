@@ -19,6 +19,8 @@ class Course < ApplicationRecord
 
   has_rich_text :description
 
+  has_rich_text :description
+
   # Validations
   validates :name, presence: true, length: { maximum: MAX_COURSE_NAME_LENGTH }
   validates :description, length: { maximum: MAX_DESCRIPTION_LENGTH }

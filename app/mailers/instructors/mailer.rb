@@ -16,7 +16,7 @@ module Instructors
         subject: course.name
       )
     end
-
+    
     def course_comment(comment, instructor)
       @comment = comment
       @instructor = instructor
