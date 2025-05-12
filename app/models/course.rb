@@ -1,5 +1,6 @@
 class Course < ApplicationRecord
   include AASM
+  include GenerateCsv
 
   # Pagination
   paginates_per 15

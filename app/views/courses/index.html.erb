@@ -47,6 +47,9 @@
   <div class="pagination-container">
     <div class="d-flex justify-content-center">
       <%= paginate @courses.object, class: 'pagination-grey' %>
+      <% if policy(Course).start? %>
+        <%= link_to "Download list of courses", courses_path(format: :csv) %>
+      <% end %>
     </div>
   </div>
 </div>

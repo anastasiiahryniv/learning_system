@@ -7,6 +7,12 @@ class CoursesController < ApplicationController
     query = CoursesQuery.new(relation: permitted_courses, params: filter_params,
                              student: current_student).call
     @courses = query.page(params[:page]).decorate
+    respond_to do |format|
+      format.html
+      format.csv do
+        send_data Course.to_csv(query), filename: Date.today.to_s, content_type: 'text/csv'
+      end
+    end
   end
 
   def show
