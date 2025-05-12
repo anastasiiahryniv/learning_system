@@ -4,12 +4,12 @@
   <table class="table table-striped table-hover">
     <thead>
       <tr>
-        <th scope="col"><%= sort_link(@q, :name, 'Course Name', default_order: :asc) %> </th>
-        <th scope="col"><%= sort_link(@q, :description, 'Description', default_order: :asc) %>  </th>
-        <th scope="col"><%= sort_link(@q, :status, 'Status', default_order: :asc) %> </th>
-        <th scope="col"><%= sort_link(@q, :students_count, 'Students count', default_order: :asc) %> </th>
-        <th scope="col">Tags</th>
-        <th scope="col">Links</th>
+        <th scope="col"><%= sort_link(@q, :name, I18n.t('courses.index.course_name'), default_order: :asc) %> </th>
+        <th scope="col"><%= sort_link(@q, :description, I18n.t('courses.index.description'), default_order: :asc) %>  </th>
+        <th scope="col"><%= sort_link(@q, :status, I18n.t('courses.index.status'), default_order: :asc) %> </th>
+        <th scope="col"><%= sort_link(@q, :students_count,  I18n.t('courses.index.students_count'), default_order: :asc) %> </th>
+        <th scope="col"><%=I18n.t('courses.index.tags')%></th>
+        <th scope="col"><%=I18n.t('courses.index.links')%></th>
       </tr>
     </thead>
     <tbody>
@@ -28,16 +28,16 @@
           </td>
           <td>
             <% if current_instructor %>
-              <%= link_to 'Show', course %>
+              <%= link_to I18n.t('courses.index.show'), course %>
             <% end%>
             <% if policy(Course).update?  %>
-              <%= link_to 'Update', edit_course_path(course) %>
+              <%= link_to I18n.t('courses.index.update'), edit_course_path(course) %>
             <% end%>
             <% if policy(Course).destroy?  %>
-              <%= link_to 'Destroy', course, method: :delete, data: { confirm: 'Are you sure?' } %>
+              <%= link_to I18n.t('courses.index.destroy'), course, method: :delete, data: { confirm: I18n.t('courses.index.are_you_sure') } %>
             <% end%>
             <% if policy(Course).enroll? %>
-              <%= link_to 'Enroll in Course', course_enrollments_path(course), method: :post, data: { confirm: 'Join course?' }%>
+              <%= link_to I18n.t('courses.index.enroll_in_course'), course_enrollments_path(course), method: :post, data: { confirm: I18n.t('courses.index.join_course') }%>
             <% end %>
           </td>
         </tr>
@@ -48,7 +48,7 @@
     <div class="d-flex justify-content-center">
       <%= paginate @courses.object, class: 'pagination-grey' %>
       <% if policy(Course).start? %>
-        <%= link_to "Download list of courses", courses_path(format: :csv) %>
+        <%= link_to I18n.t('courses.index.download_list_of_courses'), courses_path(format: :csv) %>
       <% end %>
     </div>
   </div>

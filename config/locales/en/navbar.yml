@@ -1,0 +1,10 @@
+---
+en:
+  navbar:
+    home: 'Home'
+    available_courses: 'Available courses'
+    enrolled_courses: 'Enrolled courses'
+    add_new_course: 'Add new course'
+    account: 'Account'
+    show_details: 'Show details'
+    sing_out: 'Sing out'

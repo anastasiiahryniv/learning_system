@@ -5,15 +5,15 @@
 
       <%= form.text_field :name,
                           autofocus: true,
-                          autocomplete: 'name',
-                          placeholder: 'course name',
+                          autocomplete: I18n.t('courses.new.name'),
+                          placeholder: I18n.t('courses.new.course_name'),
                           class: 'form-control' %>
     </div>
     <div data-mdb-input-init class="form-outline mb-2">
       <%= form.rich_text_area :description,
                               autofocus: true,
-                              autocomplete: 'description',
-                              placeholder: 'course description',
+                              autocomplete: I18n.t('courses.new.description'),
+                              placeholder: I18n.t('courses.new.course_description'),
                               class: 'form-control' %>
     </div>
     <div data-mdb-input-init class="form-outline mb-2">
@@ -24,12 +24,12 @@
                                          selected: @course.status),
                       {},
                       class: 'form-control',
-                      placeholder: 'Select status' %>
+                      placeholder: I18n.t('courses.new.select_status') %>
     </div>
     <div class="actions">
-      <%= form.submit 'Update Course', class: 'btn btn-secondary btn-block'%>
-      <%= link_to 'Show', @course, class: 'btn btn-secondary btn-block' %>
-      <%= link_to 'Back', courses_path, class: 'btn btn-secondary btn-block'%>
+      <%= form.submit I18n.t('courses.new.update_course'), class: 'btn btn-secondary btn-block'%>
+      <%= link_to I18n.t('courses.new.show'), @course, class: 'btn btn-secondary btn-block' %>
+      <%= link_to I18n.t('courses.new.back'), courses_path, class: 'btn btn-secondary btn-block'%>
     </div>
   <% end %>
 </div>

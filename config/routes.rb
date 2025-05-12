@@ -21,18 +21,19 @@ Rails.application.routes.draw do
     mount Sidekiq::Web => '/sidekiq'
   end
 
-  resources :courses do
-    member do
-      patch :start
-    end
+  scope "(:locale)", locale: /en|es/ do
+    resources :courses do
+      member do
+        patch :start
+      end
 
-    resources :comments do
-      resources :replies, controller: 'comments'
-    end
+      resources :comments do
+        resources :replies, controller: 'comments'
+      end
 
-    resources :enrollments, only: [:create]
+      resources :enrollments, only: [:create]
+    end
   end
-
 
   resources :enrollments, only: [:index]
 
