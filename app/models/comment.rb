@@ -1,4 +1,5 @@
 class Comment < ApplicationRecord
+  # Associations
   belongs_to :course
   belongs_to :author, polymorphic: true
 
@@ -8,4 +9,5 @@ class Comment < ApplicationRecord
   has_many :replies, class_name: 'Comment', foreign_key: :parent_id, dependent: :destroy
 
   has_rich_text :body
+
 end

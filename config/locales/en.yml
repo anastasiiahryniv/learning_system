@@ -60,3 +60,6 @@ en:
       previous: "Prev"
       next: "Next"
       truncate: "&hellip;"
+  errors:
+    comment_too_long: "Comment is too long. Maximum allowed length is %{max_length} characters."
+    comment_too_short: "Comment is too short. Minimum allowed length is %{min_length} characters."
