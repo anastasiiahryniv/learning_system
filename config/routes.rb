@@ -8,10 +8,12 @@ Rails.application.routes.draw do
 
   namespace :instructors do
     resource :profiles, only: %i[show edit update]
+    get 'instructors/pdf/:id', to: 'profiles#download_pdf'
   end
 
   namespace :students do
     resource :profiles, only: %i[show edit update]
+    get 'students/pdf/:id', to: 'profiles#download_pdf'
   end
 
 
