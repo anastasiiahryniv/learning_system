@@ -1,0 +1,10 @@
+---
+es:
+  navbar:
+    home: 'Inicio'
+    available_courses: 'Cursos disponibles'
+    enrolled_courses: 'Cursos inscritos'
+    add_new_course: 'Agregar nuevo curso'
+    account: 'Cuenta'
+    show_details: 'Mostrar detalles'
+    sing_out: 'Cerrar sesión'

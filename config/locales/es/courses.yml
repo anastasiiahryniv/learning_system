@@ -1,0 +1,49 @@
+---
+es:
+  courses:
+    index:
+      course_name: 'Nombre del curso'
+      description: 'Descripción'
+      status: 'Estado'
+      students_count: 'Número de estudiantes'
+      tags: 'Etiquetas'
+      links: 'Enlaces'
+      show: 'Mostrar'
+      update: 'Actualizar'
+      destroy: 'Eliminar'
+      enroll_in_course: 'Inscribirse en el curso'
+      join_course: '¿Unirse al curso?'
+      are_you_sure: '¿Estás seguro?'
+      download_list_of_courses: 'Descargar lista de cursos'
+    show:
+      status: 'Estado:'
+      start_course: 'Iniciar curso'
+      tags: 'Etiquetas:'
+      name: 'Nombre'
+      surname: 'Apellido'
+      email: 'Correo electrónico'
+      student_status: 'Estado del estudiante'
+      grade: 'Calificación'
+      edit: 'Editar'
+      back: 'Volver'
+      forum: 'Foro'
+    new:
+      new_course: 'Nuevo curso'
+      select_your_course_tag: 'Selecciona la etiqueta de tu curso'
+      description: 'Descripción'
+      course_description: 'Descripción del curso'
+      name: 'Nombre'
+      course_name: 'Nombre del curso'
+      submit: 'Enviar'
+      back: 'Volver'
+      show: 'Mostrar'
+      select_status: 'Selecciona estado'
+      update_course: 'Actualizar curso'
+    search:
+      search_placeholder: 'Buscar...'
+      search: 'Buscar'
+      clear_search: 'Limpiar búsqueda'
+
+
+
+
