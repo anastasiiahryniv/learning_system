@@ -1,18 +1,18 @@
 <div class="col-md-7 col-lg-5 col-xl-5 offset-xl-1">
-  <h3>New Course</h3>
+  <h3><%=I18n.t('courses.new.new_course')%></h3>
   <%= form_with(model: @course, local: true) do |form| %>
     <div data-mdb-input-init class="form-outline mb-2">
       <%= form.text_field :name,
                           autofocus: true,
-                          autocomplete: 'name',
-                          placeholder: 'course name',
+                          autocomplete: I18n.t('courses.new.name'),
+                          placeholder: I18n.t('courses.new.course_name'),
                           class: 'form-control' %>
     </div>
     <div data-mdb-input-init class="form-outline mb-2">
       <%= form.rich_text_area :description,
                               autofocus: true,
-                              autocomplete: 'description',
-                              placeholder: 'course description',
+                              autocomplete: I18n.t('courses.new.description'),
+                              placeholder: I18n.t('courses.new.course_description'),
                               class: 'form-control' %>
     </div>
     <div data-mdb-input-init class="form-outline mb-3">
@@ -20,13 +20,13 @@
                       options_for_select([%w[Music music],
                                           %w[Languages languages],
                                           %w[Maths maths]]),
-                      { selected: '', disabled: '', prompt: 'Select your course tag' },
+                      { selected: '', disabled: '', prompt: I18n.t('courses.new.select_your_course_tag') },
                       class: 'form-control'
       %>
     </div>
     <div class="actions">
-      <%= form.submit 'Submit', class: 'btn btn-secondary btn-block'%>
-      <%= link_to 'Back', courses_path, class: 'btn btn-secondary btn-block'%>
+      <%= form.submit I18n.t('courses.new.submit'), class: 'btn btn-secondary btn-block'%>
+      <%= link_to I18n.t('courses.new.back'), courses_path, class: 'btn btn-secondary btn-block'%>
     </div>
   <% end %>
 </div>

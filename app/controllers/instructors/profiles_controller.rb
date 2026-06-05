@@ -1,5 +1,6 @@
 module Instructors
   class ProfilesController < ApplicationController
+    include DownloadablePdf
     before_action :set_current_instructor
 
     def show

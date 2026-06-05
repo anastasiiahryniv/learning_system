@@ -1,25 +1,25 @@
 <div class="col-md-7 col-lg-5 col-xl-5 offset-xl-1">
-  <h3>Update your information</h3>
+  <h3><%= I18n.t('user.edit.title')%></h3>
 
   <%= form_with(model: @student, url: students_profiles_path, local: true) do |form| %>
     <div data-mdb-input-init class="form-floating  mt-3 mb-2">
 
       <%= form.text_field :name,
                           autofocus: true,
-                          placeholder: 'Name',
+                          placeholder: I18n.t('user.edit.name'),
                           class: 'form-control',
                           id: 'floatingInput'%>
-      <label for="floatingInput">Name</label>
+      <label for="floatingInput"><%= I18n.t('user.edit.name')%></label>
     </div>
 
     <div data-mdb-input-init class="form-floating mb-2">
       <%= form.text_field :surname,
                           autofocus: true,
-                          placeholder: 'Surname',
+                          placeholder: I18n.t('user.edit.surname'),
                           class: 'form-control',
                           id: 'floatingSurName'
       %>
-      <label for="floatingSurName">Surname</label>
+      <label for="floatingSurName"><%= I18n.t('user.edit.surname')%></label>
     </div>
 
     <div data-mdb-input-init class="form-outline mb-4">
@@ -29,7 +29,7 @@
     </div>
 
     <div class="actions">
-      <%= form.submit 'Update', class: 'btn btn-secondary btn-block'%>
+      <%= form.submit I18n.t('user.edit.update'), class: 'btn btn-secondary btn-block'%>
     </div>
   <% end %>
 </div>

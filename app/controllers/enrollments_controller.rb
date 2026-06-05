@@ -3,6 +3,12 @@ class EnrollmentsController < ApplicationController
 
   def index
     @enrollments = current_student.enrollments.includes(:course).page(params[:page])
+    respond_to do |format|
+      format.html
+      format.csv do
+        send_data Course.to_csv(@enrollments), filename: Date.today.to_s, content_type: 'text/csv'
+      end
+    end
   end
 
   def create

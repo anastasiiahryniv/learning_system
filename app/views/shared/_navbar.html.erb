@@ -4,38 +4,43 @@
   <div class="collapse navbar-collapse" id="navbarNavDropdown">
     <div class="navbar-nav">
       <div class="nav-item ">
-        <%= link_to 'Home', root_path %>
+        <%= link_to I18n.t('navbar.home'), root_path %>
       </div>
       <div class="nav-item">
-        <%= link_to 'Available courses', courses_path %>
+        <%= link_to I18n.t('navbar.available_courses'), courses_path %>
       </div>
       <% if policy(Course).enroll?  %>
         <div class="nav-item">
-          <%= link_to 'Enrolled courses', enrollments_path %>
+          <%= link_to I18n.t('navbar.enrolled_courses'), enrollments_path %>
         </div>
       <% end%>
       <% if instructor_signed_in? && policy(Course).create? %>
         <div class="nav-item">
-          <%= link_to 'Add new course', new_course_path %>
+          <%= link_to I18n.t('navbar.add_new_course'), new_course_path %>
         </div>
       <% end %>
       <div class="vr"></div>
       <div class="nav-item dropdown">
-        <a class="nav-link dropdown-toggle" href="#"  data-bs-toggle="dropdown" aria-expanded="false">Account</a>
+        <a class="nav-link dropdown-toggle" href="#"  data-bs-toggle="dropdown" aria-expanded="false"><%= I18n.t('navbar.account')%></a>
         <ul class="dropdown-menu">
           <li>
             <div class="dropdown-item">
-              <%= instructor_signed_in? ? link_to('Show details', instructors_profiles_path) : link_to('Show details', students_profiles_path) %>
+              <%= instructor_signed_in? ? link_to(I18n.t('navbar.show_details'), instructors_profiles_path) : link_to(I18n.t('navbar.show_details'), students_profiles_path) %>
             </div>
           </li>
           <li><hr class="dropdown-divider"></li>
           <li>
             <div class="dropdown-item" href="#">
-              <%= instructor_signed_in? ? link_to('Sing out', destroy_instructor_session_path, method: :delete, data: { turbo_method: :delete }) : link_to('Sing out', destroy_student_session_path, method: :delete, data: { turbo_method: :delete }) %>
+              <%= instructor_signed_in? ? link_to(I18n.t('navbar.sing_out'), destroy_instructor_session_path, method: :delete, data: { turbo_method: :delete }) : link_to(I18n.t('navbar.sing_out'), destroy_student_session_path, method: :delete, data: { turbo_method: :delete }) %>
             </div>
           </li>
         </ul>
       </div>
+      <% I18n.available_locales.each do |locale|%>
+        <div class="nav-item">
+          <%= link_to locale_to_flag(locale), url_for(locale: locale) %>
+        </div>
+      <% end %>
     </div>
   </div>
 </nav>
