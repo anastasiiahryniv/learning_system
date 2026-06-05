@@ -1,42 +1,111 @@
 # README
 
-## Rubocop
-### console - run check:
+## Docker
+
+### Build images
+
 ```bash
-bundle exec rubocop
-```
-### console - run check on specific file/folder:
-### console - run check:
-```bash
-rubocop app/models/user.rb
-```
-### console - safe auto correct
-```bash
-rubocop -a
-```
-### console - dangerous auto correct
-```bash
-rubocop -A
-```
-### console - autocorrect a single specific cop
-```bash
-bundle exec rubocop -a --only Style/FrozenStringLiteralComment
-bundle exec rubocop -A --only Layout/EmptyLineAfterMagicComment
+docker compose build
 ```
 
-## ERBLint
-### find issues
+### Start application
+
 ```bash
-bundle exec erblint --lint-all
-```
-### find issues and autocorrect
-```bash
-bundle exec erblint --lint-all --autocorrect
-bundle exec erblint -la -a
+docker compose up
 ```
 
-## Seeds
-### to populate db with data run: 
+### Start application in background
+
 ```bash
-rails db:seed
+docker compose up -d
 ```
+
+### Stop containers
+
+```bash
+docker compose down
+```
+
+---
+
+### Run migrations
+
+```bash
+docker compose exec web bundle exec rails db:migrate
+```
+
+### Run seeds
+
+```bash
+docker compose exec web bundle exec rails db:seed
+```
+
+### Run tests
+
+```bash
+docker compose exec web bundle exec rspec
+```
+---
+### Open Rails console
+
+```bash
+docker compose exec web bundle exec rails console
+```
+---
+### Run RuboCop check
+
+```bash
+docker compose exec web bundle exec rubocop
+```
+
+### Run RuboCop check for a specific file or folder
+
+```bash
+docker compose exec web bundle exec rubocop app/models/user.rb
+```
+
+### Run safe RuboCop autocorrect
+
+```bash
+docker compose exec web bundle exec rubocop -a
+```
+
+### Run unsafe RuboCop autocorrect
+
+```bash
+docker compose exec web bundle exec rubocop -A
+```
+
+### Autocorrect a single specific RuboCop cop
+
+```bash
+docker compose exec web bundle exec rubocop -a --only Style/FrozenStringLiteralComment
+```
+---
+### Run ERBLint check
+
+```bash
+docker compose exec web bundle exec erblint --lint-all
+```
+
+### Run ERBLint autocorrect
+
+```bash
+docker compose exec web bundle exec erblint -la -a
+```
+
+---
+
+## Commands when containers are not running
+
+Use `docker compose run --rm` when the `web` container is not already running.
+
+---
+
+## Seeded demo user credentials
+
+| Role | Email | Password |
+| --- | --- | --- |
+| Instructor | instructor@mail.com | Test123! |
+| Instructor admin | instructor_admin@mail.com | Test123! |
+| Student | student@mail.com | Test123! |

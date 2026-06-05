@@ -1,39 +1,54 @@
 require 'faker'
 PASSWORD = "Test123!"
+DEFAULT_AVATAR_PATH = Rails.root.join("app/assets/images/default_profile.png")
+
+def attach_default_avatar(record)
+  return if record.avatar.attached?
+
+  record.avatar.attach(
+    io: File.open(DEFAULT_AVATAR_PATH),
+    filename: "default_profile.png",
+    content_type: "image/png"
+  )
+end
+
 # Create or find the instructor
-Instructor.find_or_create_by(email: "instructor@mail.com") do |instructor|
+instructor = Instructor.find_or_create_by!(email: "instructor@mail.com") do |instructor|
   instructor.name = Faker::Name.first_name
   instructor.surname = Faker::Name.last_name
   instructor.status = "pending"
   instructor.password = PASSWORD
   instructor.password_confirmation = PASSWORD
   instructor.role = "instructor"
+  attach_default_avatar(instructor)
 end
 
-Instructor.find_or_create_by(email: "instructor_admin@mail.com") do |instructor|
+instructor_admin = Instructor.find_or_create_by!(email: "instructor_admin@mail.com") do |instructor|
   instructor.name = Faker::Name.first_name
   instructor.surname = Faker::Name.last_name
   instructor.status = "pending"
   instructor.password = PASSWORD
   instructor.password_confirmation = PASSWORD
-  instructor.role = 20
+  instructor.role = "instructor_admin"
+  attach_default_avatar(instructor)
 end
 
-Student.find_or_create_by(email: "student@mail.com") do |student|
+student = Student.find_or_create_by!(email: "student@mail.com") do |student|
   student.name = Faker::Name.first_name
   student.surname = Faker::Name.last_name
   student.status = "pending"
   student.password = PASSWORD
   student.password_confirmation = PASSWORD
+  attach_default_avatar(student)
 end
 
-Course.find_or_create_by(name: "Ruby on Rails") do |course|
+Course.find_or_create_by!(name: "Ruby on Rails") do |course|
   course.description = "A course for learning Ruby on Rails"
   course.status = "inactive"
   course.instructor = Instructor.first
 end
 
-Enrollment.find_or_create_by(student: Student.first, course: Course.first) do |enrollment|
+Enrollment.find_or_create_by!(student: Student.first, course: Course.first) do |enrollment|
   enrollment.status = "inactive"
   enrollment.grade = 5
 end
